@@ -30,8 +30,8 @@ const Sponsors = () => (
   <div className="sponsors">
     <h2>Our Sponsors</h2>
     <img src="/path_to_aws_logo.png" alt="AWS logo" />
-    <img src="/path_to_google_logo.png" alt="Google logo" />
-    <img src="/path_to_other_logo.png" alt="Other logo" />
+    <img src="https://drive.google.com/file/d/10U2mJOoSpF0IbkxPTlZ9y_Mhox52I6t1/view?usp=sharing" alt="Google logo" />
+    <img src="https://drive.google.com/uc?export=view&id=10U2mJOoSpF0IbkxPTlZ9y_Mhox52I6t1" alt="Other logo" />
     <img src="/path_to_facebook_logo.png" alt="Facebook logo" />
   </div>
 );

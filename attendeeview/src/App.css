@@ -90,6 +90,14 @@ span {
   margin-bottom: 10px;
 }
 
+.shipping-info {
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  margin: 20px 0;
+}
+
+
 footer {
   background-color: #fff;
   padding: 20px;
