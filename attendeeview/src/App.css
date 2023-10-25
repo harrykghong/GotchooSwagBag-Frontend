@@ -36,3 +36,73 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid #ddd;
+}
+
+.powered-by {
+  margin-top: 20px;
+  color: #888;
+}
+
+span {
+  color: #f88;
+}
+
+.sponsors {
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.sponsors img {
+  margin: 0 15px;
+  width: 60px; /* Adjust based on your logo sizes */
+  vertical-align: middle;
+}
+
+.gifts {
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.gift {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.gift img {
+  width: 80px; /* Adjust based on your image sizes */
+  margin-bottom: 10px;
+}
+
+footer {
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 5px;
+}
