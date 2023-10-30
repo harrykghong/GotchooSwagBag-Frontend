@@ -48,8 +48,8 @@ const Sponsors = ({ sponsors }) => (
     <h2>Our Sponsors</h2>
     <div className="sponsor-logos">
       {sponsors.map((sponsor) => (
-        <div key={sponsor.id}>
-          <img src={sponsor.logo} alt={`${sponsor.name} logo`} />
+        <div key={sponsor.id} className="sponsor-logo-container">
+          <img src={sponsor.logo} alt={`${sponsor.name} logo`} className="sponsor-logo" />
         </div>
       ))}
     </div>
