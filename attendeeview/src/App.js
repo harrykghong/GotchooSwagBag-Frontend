@@ -46,13 +46,16 @@ const Header = () => (
 const Sponsors = ({ sponsors }) => (
   <div className="sponsors">
     <h2>Our Sponsors</h2>
-    {sponsors.map((sponsor) => (
-      <div key={sponsor.id}>
-        <img src={sponsor.logo} alt={`${sponsor.name} logo`} />
-      </div>
-    ))}
+    <div className="sponsor-logos">
+      {sponsors.map((sponsor) => (
+        <div key={sponsor.id}>
+          <img src={sponsor.logo} alt={`${sponsor.name} logo`} />
+        </div>
+      ))}
+    </div>
   </div>
 );
+
 
 const Gifts = ({ gifts }) => (
   <div className="gifts">
