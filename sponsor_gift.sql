@@ -16,7 +16,7 @@ INSERT INTO sponsors (name, logo)
 VALUES ('Google', 'path/to/google/logo.png'),
        ('Amazon', 'path/to/amazon/logo.png'),
        ('Meta', 'path/to/meta/logo.png'),
-       ('Netflix', 'path/to/netflix/logo.png');
+       ('Netflix', 'https://drive.google.com/uc?export=view&id=1WGs5hUOICkDZgfLAiPxe4ceRrIGCTGJL');
 
 -- 创建 gifts 表
 CREATE TABLE gifts (
@@ -24,6 +24,7 @@ CREATE TABLE gifts (
     sponsor_id INT,
     gift_name VARCHAR(255) NOT NULL,
     description TEXT,
+    logo VARCHAR(255),
     FOREIGN KEY (sponsor_id) REFERENCES sponsors(id)
 );
 
