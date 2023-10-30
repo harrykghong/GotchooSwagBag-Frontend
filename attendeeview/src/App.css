@@ -73,6 +73,17 @@ span {
   vertical-align: middle;
 }
 
+.sponsor-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* To center the logos */
+  align-items: center; /* Vertically aligns the items in the middle */
+}
+
+.sponsor-logos > div {
+  margin: 0 15px; /* Adjust as needed */
+}
+
 .gifts {
   background-color: #fff;
   padding: 20px;

@@ -46,20 +46,22 @@ const Header = () => (
 const Sponsors = ({ sponsors }) => (
   <div className="sponsors">
     <h2>Our Sponsors</h2>
-    {sponsors.map((sponsor) => (
-      <div key={sponsor.id}>
-        <img src={sponsor.logo} alt={`${sponsor.name} logo`} />
-      </div>
-    ))}
+    <div className="sponsor-logos">
+      {sponsors.map((sponsor) => (
+        <div key={sponsor.id}>
+          <img src={sponsor.logo} alt={`${sponsor.name} logo`} />
+        </div>
+      ))}
+    </div>
   </div>
 );
+
 
 const Gifts = ({ gifts }) => (
   <div className="gifts">
     <h2>Your gifts from our amazing sponsors!</h2>
     {gifts.map((gift) => (
       <div className="gift" key={gift.id}>
-        <img src={gift.sponsor_logo} alt={`${gift.sponsor_name} logo`} />
         <span>{gift.gift_name}</span>
         <p>{gift.description}</p>
       </div>
