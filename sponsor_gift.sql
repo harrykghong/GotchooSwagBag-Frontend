@@ -30,7 +30,7 @@ CREATE TABLE gifts (
 );
 
 -- 插入几个示例数据
-INSERT INTO gifts (sponsor_id, gift_name, description)
+INSERT INTO gifts (sponsor_id, gift_name, description,logo)
 VALUES (1, 'Mug', 'A Google-branded mug'),
        (1, 'Backpack', 'A Google-branded backpack'),
        (2, 'Amazon Prime Membership', '3 months of Amazon Prime for Students'),
