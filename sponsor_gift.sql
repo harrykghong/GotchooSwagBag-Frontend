@@ -15,6 +15,7 @@ CREATE TABLE sponsors (
 INSERT INTO sponsors (name, logo)
 VALUES ('Google', 'https://drive.google.com/uc?export=view&id=10U2mJOoSpF0IbkxPTlZ9y_Mhox52I6t1'),
        ('Amazon', 'https://drive.google.com/uc?export=view&id=10QuuPkUU3-yTN7L6PI7bMX9znNtKaRY4'),
+       ('AWS', 'https://drive.google.com/uc?export=view&id=1WkTwsPva-BwsHaqM9_Gf0GS-jkvaHqwL'),
        ('Meta', 'https://drive.google.com/uc?export=view&id=1WBRA3Nr-3oL9pABb6CTTljNWn2oD1GZK'),
        ('Netflix', 'https://drive.google.com/uc?export=view&id=1WGs5hUOICkDZgfLAiPxe4ceRrIGCTGJL');
 
