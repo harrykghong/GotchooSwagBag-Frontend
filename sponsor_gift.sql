@@ -3,7 +3,9 @@
 USE Sponsor_info;
 drop table if exists gifts;
 drop table if exists sponsors;
-#drop table if exists gifts;
+drop table if exists gifts;
+drop table if exists host;
+
 
 CREATE TABLE sponsors (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -28,12 +30,21 @@ CREATE TABLE gifts (
     logo VARCHAR(255),
     FOREIGN KEY (sponsor_id) REFERENCES sponsors(id)
 );
-
+create table host(
+    host_id INT AUTO_INCREMENT PRIMARY KEY,
+    conference_name VARCHAR(255) not null,
+    picture_link VARCHAR(255)
+);
 -- 插入几个示例数据
 INSERT INTO gifts (sponsor_id, gift_name, description, logo)
 VALUES (1, 'Wireless Charger', 'FREE Google PowerCore 10K Portable Charger', 'https://drive.google.com/uc?export=view&id=1hMuSnBi07pSsJgmn0wj_ISoHCCgxzUT3'),
        (2, 'Amazon Prime for Students', '3 months of Amazon Prime for Students', 'https://drive.google.com/uc?export=view&id=1H3O9ZRS3jn5ysGC-8hhSKUI_blSK0xb6'),
        (4, 'JanSport Backpack', '50% OFF your JanSport Backpack', 'https://drive.google.com/uc?export=view&id=1OaLdFc95hzt4T_e1u8LuQJUZ1aNAiUIB');
+
+
+INSERT INTO host (conference_name, picture_link)
+VALUES ('UCI ICS Conference','https://ics.uci.edu/wp-content/uploads/2023/10/2023ICSWelcome-944x629.jpg');
+
 
 -- SELECT gift_name, description
 -- FROM gifts
