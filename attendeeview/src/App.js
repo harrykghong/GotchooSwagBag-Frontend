@@ -56,13 +56,12 @@ const Sponsors = ({ sponsors }) => (
   </div>
 );
 
-
 const Gifts = ({ gifts }) => (
   <div className="gifts">
     <h2>Your gifts from our amazing sponsors!</h2>
     {gifts.map((gift) => (
       <div className="gift" key={gift.id}>
-        <img src={gift.logo} alt={`${gift.gift_name} logo`} />
+        <img src={gift.logo} />
         <span>{gift.gift_name}</span>
         <p>{gift.description}</p>
       </div>

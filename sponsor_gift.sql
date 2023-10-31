@@ -31,16 +31,14 @@ CREATE TABLE gifts (
 
 -- 插入几个示例数据
 INSERT INTO gifts (sponsor_id, gift_name, description, logo)
-VALUES (1, 'Wireless Charger', 'FREE Anker PowerCore 10K Portable Charger', 'https://drive.google.com/uc?export=view&id=10U2mJOoSpF0IbkxPTlZ9y_Mhox52I6t1'),
-       (2, 'Amazon Prime for Students', '3 months of Amazon Prime for Students', 'https://drive.google.com/uc?export=view&id=10U2mJOoSpF0IbkxPTlZ9y_Mhox52I6t1'),
-       (4, 'JanSport Backpack', '50% OFF your JanSport Backpack', 'https://drive.google.com/uc?export=view&id=1hMuSnBi07pSsJgmn0wj_ISoHCCgxzUT3');
+VALUES (1, 'Wireless Charger', 'FREE Google PowerCore 10K Portable Charger', 'https://drive.google.com/uc?export=view&id=1hMuSnBi07pSsJgmn0wj_ISoHCCgxzUT3'),
+       (2, 'Amazon Prime for Students', '3 months of Amazon Prime for Students', 'https://drive.google.com/uc?export=view&id=1H3O9ZRS3jn5ysGC-8hhSKUI_blSK0xb6'),
+       (4, 'JanSport Backpack', '50% OFF your JanSport Backpack', 'https://drive.google.com/uc?export=view&id=1OaLdFc95hzt4T_e1u8LuQJUZ1aNAiUIB');
+
+-- SELECT gift_name, description
+-- FROM gifts
+-- WHERE sponsor_id = (SELECT id FROM sponsors WHERE name = 'Google');
 
 
-/*
-SELECT gift_name, description
-FROM gifts
-WHERE sponsor_id = (SELECT id FROM sponsors WHERE name = 'Google');
-
-*/
 
 

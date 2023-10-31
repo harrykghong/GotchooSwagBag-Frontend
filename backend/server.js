@@ -29,7 +29,7 @@ app.get('/sponsors', (req, res) => {
 // Fetch gifts
 app.get('/gifts', (req, res) => {
   const query = `
-    SELECT gifts.id, gifts.gift_name, gifts.description, sponsors.name as sponsor_name, sponsors.logo as sponsor_logo 
+    SELECT gifts.logo, gifts.id, gifts.gift_name, gifts.description, sponsors.name as sponsor_name, sponsors.logo as sponsor_logo 
     FROM gifts 
     JOIN sponsors ON gifts.sponsor_id = sponsors.id
   `;
