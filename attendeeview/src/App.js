@@ -61,7 +61,7 @@ const Gifts = ({ gifts }) => (
     <h2>Your gifts from our amazing sponsors!</h2>
     {gifts.map((gift) => (
       <div className="gift" key={gift.id}>
-        <img src={gift.logo} />
+        <img src={gift.logo} alt = {" "}  />
         <span>{gift.gift_name}</span>
         <p>{gift.description}</p>
       </div>
