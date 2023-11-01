@@ -97,16 +97,15 @@ const Gifts = ({ gifts }) => (
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      {gift.gift_name}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the
-                      content.
+                      {gift.description}
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
+                    <Button size="small">Select</Button>
+                    {/* <Button size="small">Edit</Button> */}
                   </CardActions>
                 </Card>
               </Grid>
@@ -117,11 +116,6 @@ const Gifts = ({ gifts }) => (
     </div>
   </div>
 );
-    // <div className="gift" key={gift.id}>
-        //   <img src={gift.logo} alt = {" "}  />
-        //   <span>{gift.gift_name}</span>
-        //   <p>{gift.description}</p>
-        // </div>
 
 const ShippingInfo = () => (
   <div className="shipping-info">
