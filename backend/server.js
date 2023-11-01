@@ -40,6 +40,17 @@ app.get('/gifts', (req, res) => {
 });
 
 
+// Fetch conference
+app.get('/host', (req, res) => {
+  const query = `
+  SELECT host.conference_name, host.picture_link 
+  From host  `;
+  db.query(query, (err, results) => {
+    if (err) throw err;
+    res.json(results);
+  });
+});
+
 // insert shipping info to database
 // app.post('/shipping-info', (req, res) => {
 //   const {firstName, lastName, phoneNumber, email, address1, address2, city, state, zip, country, giftId} = req.body;
