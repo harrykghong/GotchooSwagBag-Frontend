@@ -39,5 +39,21 @@ app.get('/gifts', (req, res) => {
   });
 });
 
+
+// insert shipping info to database
+// app.post('/shipping-info', (req, res) => {
+//   const {firstName, lastName, phoneNumber, email, address1, address2, city, state, zip, country, giftId} = req.body;
+//   // Adjust the query and parameters as needed to fit your database schema
+//   const query = 'INSERT INTO shipping_info (firstName, lastName, phoneNumber, email, address1, address2, city, state, zip, country, giftId) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
+//   db.query(query, [firstName, lastName, phoneNumber, email, address1, address2, city, state, zip, country, giftId], (err, results) => {
+//     if (err) {
+//       console.error(err);
+//       return res.status(500).send('Internal Server Error');
+//     }
+//     res.status(201).send('Shipping information saved successfully');
+//   });
+// });
+
+
 const PORT = 5001;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
