@@ -94,6 +94,12 @@ span {
   height: auto;   /* Maintain aspect ratio */
 }
 
+.gifts-img {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* To center the logos */
+  align-items: center; /* Vertically aligns the items in the middle */
+}
 
 .gifts {
   background-color: #fff;
@@ -103,8 +109,10 @@ span {
 }
 
 .gift {
-  display: inline-block;
+  display: flex;
   margin: 0 15px;
+  flex-direction: column;
+  align-items: center;
 }
 
 .gift img {
