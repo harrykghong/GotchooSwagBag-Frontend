@@ -17,8 +17,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import MainConferenceBanner from './ConferenceBanner'
 
 
+const defualtTheme = createTheme();
 
 const App = () => {
   const [sponsors, setSponsors] = useState([]);
@@ -47,23 +49,37 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app-container">
-      <Header conference={conference}/>
-      <Sponsors sponsors={sponsors} />
-      <Gifts gifts={gifts} />
-      <DigitalGifts gifts={gifts}/>
-      <ShippingInfo />
-    </div>
+    <ThemeProvider theme={defualtTheme}>
+      <CssBaseline/>
+      <Container maxWidth = "xl">
+        <MainConferenceBanner conference={conference}/>
+        {/* <Header conference={conference}/> */}
+        <Sponsors sponsors={sponsors} />
+        <Gifts gifts={gifts} />
+        <DigitalGifts gifts={gifts}/>
+        <ShippingInfo />
+      </Container>
+    </ThemeProvider>
   );
 };
 
-const Header = ({conference}) => (
-  <div className="header">
-    <h1>Welcome to {conference.conference_name || 'the conference'}</h1>
-    {conference.picture_link && <img src={conference.picture_link} alt="Conference" />}
-    <span>Powered by <img src="https://drive.google.com/uc?export=view&id=1cahLiYYIJydTUWQskXLjXL63W4pkW5be" alt="Gotchoo logo" /></span>
-  </div>
-);
+// const Header = ({conference}) => (
+//   <div className="header">
+//     <h1>Welcome to {conference.conference_name || 'the conference'}</h1>
+//     {conference.picture_link && <img src={conference.picture_link} alt="Conference" />}
+//     <span>Powered by <img src="https://drive.google.com/uc?export=view&id=1cahLiYYIJydTUWQskXLjXL63W4pkW5be" alt="Gotchoo logo" /></span>
+//   </div>
+// );
+
+// const mainConferenceBanner = {
+//   title: 'Title of a longer featured blog post',
+//   description:
+//     "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+//   image: 'https://source.unsplash.com/random?wallpapers',
+//   imageText: 'main image description',
+//   linkText: 'Continue reading…',
+// };
+
 
 const Sponsors = ({ sponsors }) => (
   <div className="sponsors">
@@ -100,16 +116,14 @@ const Gifts = ({ gifts }) => (
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      {gift.gift_name}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the
-                      content.
+                      {gift.description}
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
+                    <Button size="small">Select</Button>
                   </CardActions>
                 </Card>
               </Grid>
@@ -143,16 +157,14 @@ const DigitalGifts = ({ gifts }) => (
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      {gift.gift_name}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the
-                      content.
+                      {gift.description}
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
+                    <Button size="small">Select</Button>
                   </CardActions>
                 </Card>
               </Grid>
