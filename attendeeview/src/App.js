@@ -18,6 +18,8 @@ import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MainConferenceBanner from './ConferenceBanner'
+import ShippingInfoModal from './ShippingInfoModal';
+
 
 
 const defaultTheme = createTheme();
@@ -65,6 +67,7 @@ const App = () => {
         <Gifts gifts={gifts} />
         <DigitalGifts gifts={gifts}/>
         <ShippingInfo />
+        
       </Container>
     </ThemeProvider>
   );
@@ -130,7 +133,7 @@ const Gifts = ({ gifts }) => (
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="large">Select</Button>
+                    <ShippingInfoModal />
                   </CardActions>
                 </Card>
               </Grid>
@@ -171,7 +174,7 @@ const DigitalGifts = ({ gifts }) => (
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="large">Redeem</Button>
+                    <ShippingInfoModal />
                   </CardActions>
                 </Card>
               </Grid>
