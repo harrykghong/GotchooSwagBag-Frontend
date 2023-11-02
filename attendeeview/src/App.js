@@ -120,7 +120,7 @@ const Gifts = ({ gifts }) => (
                     component="div"
                     sx={{
                       // 16:9
-                      pt: '56.25%',
+                      pt: '100%',
                     }}
                     image={gift.logo}
                   />
@@ -161,7 +161,7 @@ const DigitalGifts = ({ gifts }) => (
                     component="div"
                     sx={{
                       // 16:9
-                      pt: '56.25%',
+                      pt: '75%',
                     }}
                     image={gift.logo}
                   />
