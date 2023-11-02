@@ -45,7 +45,7 @@ body {
 }
 
 header {
-  background-color: #fff;
+  background-color: #f4f4f4;
   padding: 20px;
   text-align: center;
   border-bottom: 2px solid #ddd;
@@ -61,7 +61,7 @@ span {
 }
 
 .sponsors {
-  background-color: #fff;
+  background-color: #F6F4EB;
   padding: 20px;
   text-align: center;
   margin: 20px 0;
@@ -102,7 +102,7 @@ span {
 }
 
 .gifts {
-  background-color: #fff;
+  background-color: #F6F4EB;
   padding: 20px;
   text-align: center;
   margin: 20px 0;
@@ -121,15 +121,19 @@ span {
 }
 
 .shipping-info {
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* To center the logos */
+  align-items: center; /* Vertically aligns the items in the middle */
+  /* text-align: center; */
   padding: 20px;
-  background-color: #fff;
+  background-color: #F6F4EB;
   margin: 20px 0;
 }
 
 
 footer {
-  background-color: #fff;
+  background-color: #F6F4EB;
   padding: 20px;
   text-align: center;
   margin-top: 20px;
@@ -137,8 +141,8 @@ footer {
 
 button {
   padding: 10px 20px;
-  background-color: #007BFF;
-  color: #fff;
+  background-color: #144272;
+  color: #F6F4EB;
   border: none;
   cursor: pointer;
   margin-top: 10px;

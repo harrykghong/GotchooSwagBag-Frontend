@@ -13,7 +13,7 @@ function MainConferenceBanner(props) {
       sx={{
         position: 'relative',
         backgroundColor: 'grey.800',
-        color: '#fff',
+        color: '#F6F4EB',
         mb: 4,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
@@ -34,12 +34,12 @@ function MainConferenceBanner(props) {
         }}
       />
       <Grid container>
-        <Grid item md={6}>
+        <Grid item md={5}>
           <Box
             sx={{
               position: 'relative',
               p: { xs: 3, md: 6 },
-              pr: { md: 0 },
+              pr: { md: 1 },
             }}
           >
             <Typography component="h1" variant="h3" color="inherit" gutterBottom sx= {{fontSize: '5rem', fontWeight: 'bold'}}>

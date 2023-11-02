@@ -20,7 +20,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MainConferenceBanner from './ConferenceBanner'
 
 
-const defualtTheme = createTheme();
+const defaultTheme = createTheme();
 
 const App = () => {
   const [sponsors, setSponsors] = useState([]);
@@ -49,9 +49,16 @@ const App = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={defualtTheme}>
-      <CssBaseline/>
-      <Container maxWidth = "xl">
+    <ThemeProvider theme={defaultTheme}>
+      <CssBaseline />
+      <style>
+        {`
+          body {
+            background-color: #0A2647;
+          }
+        `}
+      </style>
+      <Container maxWidth = "xl" >
         <MainConferenceBanner conference={conference}/>
         {/* <Header conference={conference}/> */}
         <Sponsors sponsors={sponsors} />
@@ -71,40 +78,40 @@ const App = () => {
 //   </div>
 // );
 
-// const mainConferenceBanner = {
-//   title: 'Title of a longer featured blog post',
-//   description:
-//     "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-//   image: 'https://source.unsplash.com/random?wallpapers',
-//   imageText: 'main image description',
-//   linkText: 'Continue reading…',
-// };
-
-
 const Sponsors = ({ sponsors }) => (
-  <div className="sponsors">
-    <h2>Our Sponsors</h2>
-    <div className="sponsor-logos">
-      {sponsors.map((sponsor) => (
-        <div key={sponsor.id} className="sponsor-logo-container">
-          <img src={sponsor.logo} alt={`${sponsor.name} logo`} className="sponsor-logo" />
-        </div>
-      ))}
-    </div>
-  </div>
+  <Grid Container className="sponsors" sx={{ borderRadius: '8px' }}>
+    <Typography component="h2" variant='h2' color="#0A2647" sx= {{fontWeight: 'bold'}}>Our Sponsors</Typography>
+    <Container sx={{ py: 4 }} maxWidth="xl">
+      <Grid container spacing={4} className="sponsor-logos">
+        {sponsors.map((sponsor) => (
+          <Grid item key={sponsor.id} className="sponsor-logo-container" >
+            <img
+              src={sponsor.logo}
+              alt={`${sponsor.name} logo`}
+              className="sponsor-logo"
+              style={{
+                width: '150px', // Adjust this value to control the maximum width
+                height: 'auto', // Maintain aspect ratio
+              }}
+            />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
+  </Grid>
 );
 
 const Gifts = ({ gifts }) => (
-  <div className="gifts">
-    <h2>Your gifts from our amazing sponsors!</h2>
+  <Grid Container className="gifts" sx={{ borderRadius: '8px' }}>
+    <Typography component="h3" variant='h3' color="#0A2647" sx= {{ fontWeight: 'bold'}}>Your gifts from our amazing sponsors!</Typography>
+    <Typography component="subtitle1" variant='subtitle1' color="#0A2647">Select ONE physical gifts from the following</Typography>
     <div className='gifts-img'>
-      <Container sx={{ py: 8 }} maxWidth="md">
-          {/* End hero unit */}
+      <Container sx={{ py: 8 }} maxWidth="xl">
           <Grid container spacing={4}>
             {gifts.map((gift) => (
               <Grid item key={gift.id} xs={12} sm={6} md={4}>
                 <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                  sx={{ height: '100%', display: 'flex', flexDirection: 'column'}}
                 >
                   <CardMedia
                     component="div"
@@ -115,15 +122,15 @@ const Gifts = ({ gifts }) => (
                     image={gift.logo}
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom variant="h5" component="h5" sx= {{ fontWeight: 'bold'}}>
                       {gift.gift_name}
                     </Typography>
-                    <Typography>
+                    <Typography variant="h6" component="h6"> 
                       {gift.description}
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">Select</Button>
+                    <Button size="large">Select</Button>
                   </CardActions>
                 </Card>
               </Grid>
@@ -132,14 +139,14 @@ const Gifts = ({ gifts }) => (
         </Grid>
       </Container>
     </div>
-  </div>
+  </Grid>
 );
 
 const DigitalGifts = ({ gifts }) => (
-  <div className="gifts">
-    <h2>Your gifts from our amazing sponsors!</h2>
+  <Grid Container className="gifts" sx={{ borderRadius: '8px' }}>
+    <Typography component="h3" variant='h3' color="#0A2647" sx= {{ fontWeight: 'bold'}}>Your gifts from our amazing sponsors!</Typography>
     <div className='gifts-img'>
-      <Container sx={{ py: 8 }} maxWidth="md">
+      <Container sx={{ py: 8 }} maxWidth="xl">
           {/* End hero unit */}
           <Grid container spacing={4}>
             {gifts.map((gift) => (
@@ -156,15 +163,15 @@ const DigitalGifts = ({ gifts }) => (
                     image={gift.logo}
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom variant="h5" component="h2" sx= {{ fontWeight: 'bold'}}>
                       {gift.gift_name}
                     </Typography>
-                    <Typography>
+                    <Typography variant="h6" component="h6">
                       {gift.description}
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">Select</Button>
+                    <Button size="large">Redeem</Button>
                   </CardActions>
                 </Card>
               </Grid>
@@ -173,7 +180,7 @@ const DigitalGifts = ({ gifts }) => (
         </Grid>
       </Container>
     </div>
-  </div>
+  </Grid>
 );
 
 
@@ -185,10 +192,12 @@ const DigitalGifts = ({ gifts }) => (
         // </div>
 
 const ShippingInfo = () => (
-  <div className="shipping-info">
-    <p>Enter your shipping info to receive your gifts delivered to your home!</p>
-    <button>Shipping Information</button>
-  </div>
+  <Grid container className="shipping-info" sx={{ borderRadius: '8px' , flexDirection: 'column', padding: '16px' }}>
+    <Typography variant="h6" component="h6">Enter your shipping info to receive your gifts delivered to your home!</Typography>
+
+    {/* <p>Enter your shipping info to receive your gifts delivered to your home!</p> */}
+    <button size="large">Shipping Information</button>
+  </Grid>
 );
 
 // ... Other components remain unchanged
