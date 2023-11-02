@@ -6,6 +6,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 
 function ShippingInfoModal() {
@@ -39,78 +41,95 @@ function ShippingInfoModal() {
       </Button>
       <Grid Container className="shippingModalDialog">
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Shipping Information</DialogTitle>
+            <DialogTitle variant="h6" gutterBottom>Shipping Information</DialogTitle>
             <DialogContent>
-            <TextField
-                label="First Name"
-                name="first_name"
-                value={shippingInfo.first_name}
-                onChange={handleInputChange}
-                fullWidth
-            />
-            <TextField
-                label="Last Name"
-                name="Last_name"
-                value={shippingInfo.last_name}
-                onChange={handleInputChange}
-                fullWidth
-            />
-            <TextField
-                label="Phone Number"
-                name="phone"
-                value={shippingInfo.phone}
-                onChange={handleInputChange}
-                fullWidth
-            />
-            <TextField
-                label="Email Address"
-                name="email"
-                value={shippingInfo.email}
-                onChange={handleInputChange}
-                fullWidth
-            />
-            <TextField
-                label="Address 1"
-                name="address1"
-                value={shippingInfo.address1}
-                onChange={handleInputChange}
-                fullWidth
-            />
-            <TextField
-                label="Address 2"
-                name="address2"
-                value={shippingInfo.address2}
-                onChange={handleInputChange}
-                fullWidth
-            />
-            <TextField
-                label="City"
-                name="city"
-                value={shippingInfo.city}
-                onChange={handleInputChange}
-                fullWidth
-            />
-            <TextField
-                label="State"
-                name="state"
-                value={shippingInfo.state}
-                onChange={handleInputChange}
-                fullWidth
-            />
-            <TextField
-                label="Zip Code"
-                name="zip"
-                value={shippingInfo.zip}
-                onChange={handleInputChange}
-                fullWidth
-            />
-            <TextField
-                label="Country"
-                name="country"
-                value={shippingInfo.country}
-                onChange={handleInputChange}
-                fullWidth
-            />
+            <Grid container spacing={3}>
+                <Grid item xs={12} sm={6}>
+                <TextField
+                    required
+                    id="firstName"
+                    name="firstName"
+                    label="First name"
+                    fullWidth
+                    autoComplete="given-name"
+                    variant="standard"
+                />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                <TextField
+                    required
+                    id="lastName"
+                    name="lastName"
+                    label="Last name"
+                    fullWidth
+                    autoComplete="family-name"
+                    variant="standard"
+                />
+                </Grid>
+                <Grid item xs={12}>
+                <TextField
+                    required
+                    id="address1"
+                    name="address1"
+                    label="Address line 1"
+                    fullWidth
+                    autoComplete="shipping address-line1"
+                    variant="standard"
+                />
+                </Grid>
+                <Grid item xs={12}>
+                <TextField
+                    id="address2"
+                    name="address2"
+                    label="Address line 2"
+                    fullWidth
+                    autoComplete="shipping address-line2"
+                    variant="standard"
+                />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                <TextField
+                    required
+                    id="city"
+                    name="city"
+                    label="City"
+                    fullWidth
+                    autoComplete="shipping address-level2"
+                    variant="standard"
+                />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                <TextField
+                    id="state"
+                    name="state"
+                    label="State/Province/Region"
+                    fullWidth
+                    variant="standard"
+                />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                <TextField
+                    required
+                    id="zip"
+                    name="zip"
+                    label="Zip / Postal code"
+                    fullWidth
+                    autoComplete="shipping postal-code"
+                    variant="standard"
+                />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                <TextField
+                    required
+                    id="country"
+                    name="country"
+                    label="Country"
+                    fullWidth
+                    autoComplete="shipping country"
+                    variant="standard"
+                />
+                </Grid>
+            </Grid>
             </DialogContent>
             <DialogActions>
             <Button onClick={handleClose} color="primary">
