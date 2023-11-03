@@ -23,14 +23,14 @@ CREATE TABLE gifts (
     gift_name VARCHAR(255) NOT NULL,
     description TEXT,
     logo VARCHAR(255),
-    gift_type ENUM('physical', 'digital') NOT NULL,  -- 新增字段区分礼物类型
+    -- gift_type ENUM('physical', 'digital') NOT NULL,  -- 新增字段区分礼物类型
     FOREIGN KEY (sponsor_id) REFERENCES sponsors(id)
 );
 
 -- 子表 physical_gifts
 CREATE TABLE physical_gifts (
     gift_id INT PRIMARY KEY,
-    shipping_details TEXT NOT NULL,
+    -- shipping_details TEXT NOT NULL,
     weight DECIMAL(5,2),  -- 例如，以千克为单位的重量
     FOREIGN KEY (gift_id) REFERENCES gifts(id)
 );
@@ -60,18 +60,18 @@ CREATE TABLE attendee (
 
 -- 创建 shipping_information 表
 CREATE TABLE shipping_information (
-    shipping_id INT AUTO_INCREMENT PRIMARY KEY,
     attendee_id INT,
-    first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
+    -- first_name VARCHAR(255) NOT NULL,
+    -- last_name VARCHAR(255) NOT NULL,
     address1 VARCHAR(255) NOT NULL,
     address2 VARCHAR(255),
     city VARCHAR(255) NOT NULL,
-    state VARCHAR(255) NOT NULL,
-    zip VARCHAR(10) NOT NULL,
+    which_state VARCHAR(255) NOT NULL,
+    zip VARCHAR(5) NOT NULL,
     country VARCHAR(255) DEFAULT 'US',
     FOREIGN KEY (attendee_id) REFERENCES attendee(attendee_id)
 );
+
 
 -- 插入几个示例数据
 INSERT INTO sponsors (name, logo)
