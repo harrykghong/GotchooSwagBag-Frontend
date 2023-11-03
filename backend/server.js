@@ -4,6 +4,7 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 
 const db = mysql.createConnection({
   host: 'localhost',
@@ -52,18 +53,24 @@ app.get('/host', (req, res) => {
 });
 
 // insert shipping info to database
-// app.post('/shipping-info', (req, res) => {
-//   const {firstName, lastName, phoneNumber, email, address1, address2, city, state, zip, country, giftId} = req.body;
-//   // Adjust the query and parameters as needed to fit your database schema
-//   const query = 'INSERT INTO shipping_info (firstName, lastName, phoneNumber, email, address1, address2, city, state, zip, country, giftId) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
-//   db.query(query, [firstName, lastName, phoneNumber, email, address1, address2, city, state, zip, country, giftId], (err, results) => {
-//     if (err) {
-//       console.error(err);
-//       return res.status(500).send('Internal Server Error');
-//     }
-//     res.status(201).send('Shipping information saved successfully');
-//   });
-// });
+app.post('/shipping-info', (req, res) => {
+  const { first_name, last_name, address1, address2, city, state, zip, country } = req.body;
+  const query = 'INSERT INTO shipping_information (first_name, last_name, address1, address2, city, state, zip, country) VALUES (?,?,?,?,?,?,?,?)';
+  
+  db.query(query, [first_name, last_name, address1, address2, city, state, zip, country], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Internal Server Error', error: err });
+    }
+    
+    if (results.affectedRows === 1) {
+      res.status(201).json({ message: 'Shipping information saved successfully' });
+    } else {
+      res.status(400).json({ message: 'Insert failed, no rows affected.' });
+    }
+  });
+});
+
 
 
 const PORT = 5001;
