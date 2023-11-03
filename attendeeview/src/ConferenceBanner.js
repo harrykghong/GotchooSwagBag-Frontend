@@ -5,9 +5,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
-function MainConferenceBanner(props) {
-  const { conference } = props;
-
+function MainConferenceBanner({ conference }) {
   return (
     <Paper
       sx={{
@@ -21,8 +19,7 @@ function MainConferenceBanner(props) {
         backgroundImage: `url(${conference.picture_link})`,
       }}
     >
-      {/* Increase the priority of the hero background image */}
-      {<img style={{ display: 'none' }} src={conference.picture_link} alt={conference.conference_name} />}
+      <img style={{ display: 'none' }} src={conference.picture_link} alt={conference.conference_name} />
       <Box
         sx={{
           position: 'absolute',
@@ -34,7 +31,7 @@ function MainConferenceBanner(props) {
         }}
       />
       <Grid container>
-        <Grid item md={5}>
+        <Grid item md={9}>
           <Box
             sx={{
               position: 'relative',
@@ -42,18 +39,33 @@ function MainConferenceBanner(props) {
               pr: { md: 1 },
             }}
           >
-            <Typography component="h1" variant="h3" color="inherit" gutterBottom sx= {{fontSize: '5rem', fontWeight: 'bold'}}>
+            <Typography component="h1" variant="h3" color="inherit" gutterBottom sx={{ fontSize: '5rem', fontWeight: 'bold' }}>
               {conference.conference_name}
             </Typography>
             <Typography variant="h5" color="inherit" paragraph>
               {conference.description}
             </Typography>
-            <Typography variant="subtitle1" color="inherit" paragraph>
-              Powered by <img src="https://drive.google.com/uc?export=view&id=1cahLiYYIJydTUWQskXLjXL63W4pkW5be" alt="Gotchoo logo"  width="50" height="auto"/>
+          </Box>
+        </Grid>
+        <Grid item md={3}>
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: 0,
+              right: 0,
+              p: { xs: 3, md: 6 },
+            }}
+          >
+            <Typography variant="subtitle1" color="inherit" paragraph sx={{ display: 'flex', alignItems: 'center', backgroundColor: '#000'}}>
+              Powered by 
+              <img 
+                src="https://drive.google.com/uc?export=view&id=1cahLiYYIJydTUWQskXLjXL63W4pkW5be" 
+                alt="Gotchoo logo" 
+                width="50" 
+                height="auto" 
+                style={{ marginLeft: '5px' }} // Optional: Add a bit of spacing between the text and the image.
+              />
             </Typography>
-            {/* <Link variant="subtitle1" href="#">
-              {conference.linkText}
-            </Link> */}
           </Box>
         </Grid>
       </Grid>
@@ -62,12 +74,10 @@ function MainConferenceBanner(props) {
 }
 
 MainConferenceBanner.propTypes = {
-  post: PropTypes.shape({
+  conference: PropTypes.shape({
     description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    imageText: PropTypes.string.isRequired,
-    linkText: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
+    picture_link: PropTypes.string.isRequired,
+    conference_name: PropTypes.string.isRequired,
   }).isRequired,
 };
 
