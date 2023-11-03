@@ -37,6 +37,7 @@ CREATE TABLE gifts (
     FOREIGN KEY (sponsor_id) REFERENCES sponsors(id)
 );
 
+
 -- 子表 physical_gifts
 CREATE TABLE physical_gifts (
     gift_id INT PRIMARY KEY,
@@ -82,6 +83,7 @@ create table host(
     conference_name VARCHAR(255) not null,
     picture_link VARCHAR(255)
 );
+
 -- 插入几个示例数据
 INSERT INTO gifts (sponsor_id, gift_name, description, logo)
 VALUES (1, 'Wireless Charger', 'FREE Google PowerCore 10K Portable Charger', 'https://drive.google.com/uc?export=view&id=1hMuSnBi07pSsJgmn0wj_ISoHCCgxzUT3'),
@@ -90,7 +92,8 @@ VALUES (1, 'Wireless Charger', 'FREE Google PowerCore 10K Portable Charger', 'ht
 
 
 INSERT INTO host (conference_name, picture_link)
-VALUES ('UCI ICS Conference','https://ics.uci.edu/wp-content/uploads/2023/10/2023ICSWelcome-944x629.jpg');
+VALUES ('UCI ICS Conference','https://drive.google.com/uc?export=view&id=1WVgNCp2oKAeoiH7Fl7mt9cJHYYOYMcjn');
+
 
 
 
@@ -129,6 +132,9 @@ VALUES (1, '123 Main St', 'Apt 4B', 'Anytown', 'NY', '12345', 'US'),
        (2, '456 Elm St', 'Suite 12A', 'Somewhere', 'CA', '98765', 'US'),
        (3, '789 Oak St', '', 'Nowhere', 'TX', '55555', 'US');
 
+
+-- SELECT host.conference_name, host.picture_link 
+-- From host
 -- SELECT gift_name, description
 -- FROM gifts
 -- WHERE sponsor_id = (SELECT id FROM sponsors WHERE name = 'Google');
