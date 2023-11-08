@@ -6,8 +6,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Checkbox from '@mui/material/Checkbox';
 
 
 function ShippingInfoModal() {
@@ -54,11 +52,11 @@ function ShippingInfoModal() {
   
 
   return (
-    <Grid Container className="shippingModal">
-      <Button variant="outlined" onClick={handleOpen}>
-        Select
+    <Grid container className="shippingModal">
+      <Button fullWidth variant="outlined" onClick={handleOpen}>
+        Redeem
       </Button>
-      <Grid Container className="shippingModalDialog">
+      <Grid container className="shippingModalDialog">
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle variant="h6" gutterBottom>Shipping Information</DialogTitle>
             <DialogContent>
