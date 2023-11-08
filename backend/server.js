@@ -76,7 +76,7 @@ app.get('/host', (req, res) => {
 // insert shipping info to database
 app.post('/shipping-info', (req, res) => {
  const { first_name, last_name, address1, address2, city, state, zip, country } = req.body;
- const query = 'INSERT INTO shipping_information (first_name, last_name, address1, address2, city, state, zip, country) VALUES (?,?,?,?,?,?,?,?)';
+ const query = 'INSERT INTO shipping_information (first_name, last_name, address1, address2, city, which_state, zip, country) VALUES (?,?,?,?,?,?,?,?)';
   db.query(query, [first_name, last_name, address1, address2, city, state, zip, country], (err, results) => {
    if (err) {
      console.error(err);

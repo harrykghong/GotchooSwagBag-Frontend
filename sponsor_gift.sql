@@ -48,8 +48,8 @@ CREATE TABLE attendee (
 -- 创建 shipping_information 表
 CREATE TABLE shipping_information (
    attendee_id INT,
-   -- first_name VARCHAR(255) NOT NULL,
-   -- last_name VARCHAR(255) NOT NULL,
+   first_name VARCHAR(255) NOT NULL,
+   last_name VARCHAR(255) NOT NULL,
    address1 VARCHAR(255) NOT NULL,
    address2 VARCHAR(255),
    city VARCHAR(255) NOT NULL,
@@ -73,7 +73,7 @@ VALUES ('Google', 'https://drive.google.com/uc?export=view&id=1dI1gqRqHotIqHopn8
 INSERT INTO gifts (sponsor_id, gift_name, description, logo, gift_type)
 VALUES (1, 'Wireless Charger', 'FREE Google PowerCore 10K Portable Charger', 'https://drive.google.com/uc?export=view&id=1hMuSnBi07pSsJgmn0wj_ISoHCCgxzUT3', 'physical'),
       (2, 'Meta Quest 3', 'Free Quest 3', 'https://drive.google.com/uc?export=view&id=12M8XD8DfzoA5z7XyRdW5-Ad9zollXgm5','physical'),
-      (4, 'JanSport Backpack', '50% OFF your JanSport Backpack', 'https://drive.google.com/uc?export=view&id=1OaLdFc95hzt4T_e1u8LuQJUZ1aNAiUIB','physical');
+      (4, 'JanSport Backpack', '50% OFF your JanSport Backpack Provided by Meta', 'https://drive.google.com/uc?export=view&id=1OaLdFc95hzt4T_e1u8LuQJUZ1aNAiUIB','physical');
 
 
 INSERT INTO gifts (sponsor_id, gift_name, description, logo, redeem_link, gift_type)
