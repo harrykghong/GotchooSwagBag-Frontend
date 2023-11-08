@@ -17,7 +17,7 @@ const App = () => {
   const [conference, setConferences] = useState([]);
   const [sponsors, setSponsors] = useState([]);
   const [physicalG, setGifts] = useState([]);
-  //const [digitalG, setGifts] = useState([]); //fetch digital gift here, change line 59 as well
+  const [digitalG, setdigitalGifts] = useState([]); //fetch digital gift here, change line 59 as well
   
   useEffect(() => {
     const fetchSponsors = async () => {
@@ -26,9 +26,15 @@ const App = () => {
       setSponsors(data);
     };
     const fetchGifts = async () => {
-      const response = await fetch('http://localhost:5001/gifts');
+      const response = await fetch('http://localhost:5001/physicalgifts');
       const data = await response.json();
       setGifts(data);
+    };
+
+    const fetchdigitalGifts = async () => {
+      const response = await fetch('http://localhost:5001/digitalgifts');
+      const data = await response.json();
+      setdigitalGifts(data);
     };
     const fetchConferences = async () => {
       const response = await fetch('http://localhost:5001/host');
@@ -39,6 +45,7 @@ const App = () => {
     fetchConferences();
     fetchSponsors();
     fetchGifts();
+    fetchdigitalGifts();
   }, []);
 
   return (
@@ -56,7 +63,7 @@ const App = () => {
         {/* <Header conference={conference}/> */}
         <Sponsors sponsors={sponsors} />
         <PhysicalGifts gifts={physicalG} />
-        <DigitalGifts gifts={physicalG}/>
+        <DigitalGifts gifts={digitalG}/>
         {/*<ShippingInfo />*/}
         
       </Container>

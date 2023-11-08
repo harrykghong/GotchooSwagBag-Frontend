@@ -38,7 +38,7 @@ const DigitalGifts = ({ gifts }) => (
                     </Typography>
                   </CardContent>
                   <CardActions>
-                  <Button fullWidth variant="outlined" color="primary" onClick={()=>window.open('https://www.amazon.com','_blank')}>
+                  <Button fullWidth variant="outlined" color="primary" onClick={()=>window.open(gift.redeem_link,'_blank')}>
                     Redeem
                   </Button>
                   </CardActions>
