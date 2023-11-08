@@ -25,7 +25,7 @@ const DigitalGifts = ({ gifts }) => (
                     component="div"
                     sx={{
                       // 16:9
-                      pt: '75%',
+                      pt: '100%',
                     }}
                     image={gift.logo}
                   />
