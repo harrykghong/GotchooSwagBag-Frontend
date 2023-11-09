@@ -6,7 +6,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import ShippingInfoModal from './ShippingInfoModal';
+// import ShippingInfoModal from './ShippingInfoModal';
+import Redeem from './RedeemModal';
 
 
 const PhysicalGifts = ({ gifts }) => (
@@ -38,7 +39,7 @@ const PhysicalGifts = ({ gifts }) => (
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <ShippingInfoModal />
+                    <Redeem />
                   </CardActions>
                 </Card>
               </Grid>

@@ -1,22 +1,23 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Toolbar from '@mui/material/Toolbar';
-import Paper from '@mui/material/Paper';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import { Grid } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
 import ShippingInfoModal from './ShippingInfoModal';
 import SignInModal from './SignInModal';
+import SignUpModal from './SignUpModal';
+import { useAuth } from './authContext';
+
+
+
 
 const steps = ['Sign in', 'Sign up', 'Shipping Information'];
 
-function getSteoContent(step) {
+function getStepContent(step) {
     switch (step) {
         case 0:
             return <SignInModal/>;
@@ -30,7 +31,9 @@ function getSteoContent(step) {
 }
 
 export default function Redeem() {
+    const [open, setOpen] = React.useState(false);
     const [activeStep, setActiveStep] = React.useState(0);
+    const {user, signIn, signOut } = useAuth();
 
     const handleNext = ()=> {
         setActiveStep(activeStep + 1);
@@ -39,30 +42,100 @@ export default function Redeem() {
     const handleBack = () => {
         setActiveStep(activeStep - 1);
     };
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleSubmit = () => {
+        // Handle the shipping information, e.g., send it to a server
+        console.log('Redeem info:', activeStep);
+        setOpen(false);
+    };
+
     return (
-        <Grid container className="shippingModal">
-        <Button fullWidth variant="outlined" onClick={handleOpen}>
-            Redeem
-        </Button>
-        <Grid container className="RedeemModalDialog">
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle variant="h6" gutterBottom>Redeem</DialogTitle>
-                <DialogContent>
-                <Grid container spacing={3}>
-                    
-               
-                </Grid>
-                </DialogContent>
-                <DialogActions>
-                <Button onClick={handleClose} color="primary">
-                    Cancel
-                </Button>
-                <Button onClick={handleSubmit} color="primary">
-                    Save
-                </Button>
-                </DialogActions>
-            </Dialog>
-        </Grid>
+        <Grid container className="RedeemModal">
+            <Button fullWidth variant="outlined" onClick={handleOpen}>
+                Redeem
+            </Button>
+            <Grid container className="RedeemModalDialog">
+                <Dialog open={open} onClose={handleClose}>
+                    <DialogTitle variant="h6" gutterBottom>Redeem</DialogTitle>
+                    <DialogContent>
+                    <Grid container spacing={3}>
+                        {/* <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+                            {steps.map((label) => (
+                            <Step key={label}>
+                                <StepLabel>{label}</StepLabel>
+                            </Step>
+                            ))}
+                        </Stepper> */}
+                        {activeStep === steps.length ? (
+                            <React.Fragment>
+                            <Typography variant="h5" gutterBottom>
+                                Thank you for your order.
+                            </Typography>
+                            <Typography variant="subtitle1">
+                                Your order number is #2001539. We have emailed your order
+                                confirmation, and will send you an update when your order has
+                                shipped.
+                            </Typography>
+                            </React.Fragment>
+                        ) : (
+                            <React.Fragment>
+                            <Grid item xs={12}>
+                                {getStepContent(activeStep)}
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Box
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between', // Adjust alignment here
+                                    mt: 3,
+                                    ml: 1,
+                                    mr: 1, // Add right margin for the "Cancel" and "Save" buttons
+                                }}
+                                >
+                                {activeStep !== 0 && (
+                                    <Button onClick={handleBack}>
+                                    Back
+                                    </Button>
+                                )}
+                                <Button
+                                    variant="contained"
+                                    onClick={handleNext}
+                                >
+                                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                                </Button>
+                                </Box>
+                            </Grid>
+                            
+                            </React.Fragment>
+                        )}
+                
+                    </Grid>
+                    </DialogContent>
+                    <DialogActions>
+                        <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'flex-end',
+                            mt: 2, // Add top margin
+                        }}
+                        >
+                        <Button onClick={handleClose} color="primary">
+                            Cancel
+                        </Button>
+                        <Button onClick={handleSubmit} color="primary">
+                            Save
+                        </Button>
+                        </Box>
+                    </DialogActions>
+                </Dialog>
+            </Grid>
         </Grid>
     );
 };
