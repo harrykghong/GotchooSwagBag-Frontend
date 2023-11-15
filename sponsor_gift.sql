@@ -34,6 +34,7 @@ create table host(
    picture_link VARCHAR(255)
 );
 
+-- event table 
 
 -- 创建 attendee 表
 CREATE TABLE attendee (
