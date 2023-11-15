@@ -39,7 +39,7 @@ const PhysicalGifts = ({ gifts }) => (
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Redeem />
+                    <Redeem buttonName='Select One'/>
                   </CardActions>
                 </Card>
               </Grid>

@@ -30,7 +30,7 @@ function getStepContent(step) {
     }
 }
 
-export default function Redeem() {
+export default function Redeem({ buttonName }) {
     const [open, setOpen] = React.useState(false);
     const [activeStep, setActiveStep] = React.useState(0);
     const {user, signIn, signOut } = useAuth();
@@ -59,7 +59,7 @@ export default function Redeem() {
     return (
         <Grid container className="RedeemModal">
             <Button fullWidth variant="outlined" onClick={handleOpen}>
-                Redeem
+                {buttonName || 'Redeem'}
             </Button>
             <Grid container className="RedeemModalDialog">
                 <Dialog open={open} onClose={handleClose}>
