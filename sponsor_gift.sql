@@ -1,18 +1,21 @@
 -- 创建 sponsors 表
 -- create database Sponsor_info;
+-- create schema 
 USE Sponsor_info;
-drop table if exists physical_gifts;
-drop table if exists digital_gifts;
+drop table if exists shipping_information;
+drop table if exists swag_bag;
 drop table if exists gifts;
 drop table if exists sponsors;
-drop table if exists host;
-drop table if exists shipping_information;
 drop table if exists attendee;
+drop table if exists events;
+drop table if exists host;
+
 
 CREATE TABLE sponsors (
    id INT AUTO_INCREMENT PRIMARY KEY,
    name VARCHAR(255) NOT NULL UNIQUE,
-   logo VARCHAR(255) -- 可以存放logo的链接或路径
+   logo VARCHAR(255), -- 可以存放logo的链接或路径
+   website_link text
 );
 
 -- 父表 gifts
@@ -30,11 +33,31 @@ CREATE TABLE gifts (
 
 create table host(
    host_id INT AUTO_INCREMENT PRIMARY KEY,
-   conference_name VARCHAR(255) not null,
-   picture_link VARCHAR(255)
+   host_name VARCHAR(255)
+   
+   -- conference_name VARCHAR(255) not null,
+   -- picture_link VARCHAR(255)
 );
 
 -- event table 
+create table events(
+   id INT AUTO_INCREMENT PRIMARY KEY,
+   Event_Name VARCHAR(255) not null,
+   Event_date date not null,
+   host_id int not null,
+   picture_link VARCHAR(255),
+   FOREIGN key (host_id) REFERENCES host(host_id)
+);
+
+create table swag_bag(
+   id int AUTO_INCREMENT,
+   gift_id int not null,
+   event_id int not null,
+   FOREIGN key (event_id) references events(id),
+   FOREIGN key (gift_id) references gifts(id),
+   PRIMARY key (id,gift_id,event_id)
+);
+
 
 -- 创建 attendee 表
 CREATE TABLE attendee (
@@ -57,68 +80,54 @@ CREATE TABLE shipping_information (
    which_state VARCHAR(255) NOT NULL,
    zip VARCHAR(5) NOT NULL,
    country VARCHAR(255) DEFAULT 'US',
-   FOREIGN KEY (attendee_id) REFERENCES attendee(attendee_id)
+   gift_id int not null,
+   FOREIGN KEY (attendee_id) REFERENCES attendee(attendee_id),
+   FOREIGN KEY (gift_id) REFERENCES gifts(id)
 );
 
 
--- 插入几个示例数据
-INSERT INTO sponsors (name, logo)
-VALUES ('Google', 'https://drive.google.com/uc?export=view&id=1dI1gqRqHotIqHopn8tSCC13iYDurvM-C'),
-      ('Amazon', 'https://drive.google.com/uc?export=view&id=10QuuPkUU3-yTN7L6PI7bMX9znNtKaRY4'),
-      ('Apple', 'https://drive.google.com/uc?export=view&id=16F9D--V8w1dHZLwEUGRJYpeaFq-EpH10'),
-      ('Meta', 'https://drive.google.com/uc?export=view&id=1WBRA3Nr-3oL9pABb6CTTljNWn2oD1GZK'),
-      ('Netflix', 'https://drive.google.com/uc?export=view&id=1WGs5hUOICkDZgfLAiPxe4ceRrIGCTGJL');
+-- -- 插入几个示例数据
+INSERT INTO sponsors (name, logo, website_link)
+VALUES ('Google', 'https://drive.google.com/uc?export=view&id=1dI1gqRqHotIqHopn8tSCC13iYDurvM-C','google.com'),
+      ('Amazon', 'https://drive.google.com/uc?export=view&id=10QuuPkUU3-yTN7L6PI7bMX9znNtKaRY4','amazon.com'),
+      ('Apple', 'https://drive.google.com/uc?export=view&id=16F9D--V8w1dHZLwEUGRJYpeaFq-EpH10','apple.com'),
+      ('Meta', 'https://drive.google.com/uc?export=view&id=1WBRA3Nr-3oL9pABb6CTTljNWn2oD1GZK','meta.com'),
+      ('Netflix', 'https://drive.google.com/uc?export=view&id=1WGs5hUOICkDZgfLAiPxe4ceRrIGCTGJL','netflix.com');
     
 
--- 插入几个示例数据
+-- -- 插入几个示例数据
 INSERT INTO gifts (sponsor_id, gift_name, description, logo, gift_type)
 VALUES (1, 'Wireless Charger', 'FREE Google PowerCore 10K Portable Charger', 'https://drive.google.com/uc?export=view&id=1hMuSnBi07pSsJgmn0wj_ISoHCCgxzUT3', 'physical'),
       (2, 'Meta Quest 3', 'Free Quest 3', 'https://drive.google.com/uc?export=view&id=12M8XD8DfzoA5z7XyRdW5-Ad9zollXgm5','physical'),
       (4, 'JanSport Backpack', '50% OFF your JanSport Backpack Provided by Meta', 'https://drive.google.com/uc?export=view&id=1OaLdFc95hzt4T_e1u8LuQJUZ1aNAiUIB','physical');
 
-
+-- physical gifts
 INSERT INTO gifts (sponsor_id, gift_name, description, logo, redeem_link, gift_type)
 VALUES (2, 'Amazon Prime', '3 months of Amazon Prime for Students', 'https://drive.google.com/uc?export=view&id=1H3O9ZRS3jn5ysGC-8hhSKUI_blSK0xb6', 'https://www.amazon.com/amazonprime?tag=googhydr-20&hvadid=550213431242&hvpos=&hvexid=&hvnetw=g&hvrand=14802087175486172389&hvpone=&hvptwo=&hvqmt=e&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9031531&hvtargid=kwd-3151046130&ref=pd_sl_34qfrygf2i_e', 'digital'),
 		(5, 'Netflix Membership', '1 month free membership on Netflix', 'https://drive.google.com/uc?export=view&id=1iSAgGxC-OxVU7ZGAMbSvgf_2RpzsbxER', 'https://www.netflix.com/signup', 'digital'),
 		(3, 'Apple Music Membership', '12 month free membership on Apple music', 'https://drive.google.com/uc?export=view&id=1MBfRLR0DQrI0HhIfCAD_Iu3Lf1dwkhXt', 'https://www.apple.com/apple-music/', 'digital');
 
-INSERT INTO host (conference_name, picture_link)
-VALUES ('UCI ICS Conference','https://drive.google.com/uc?export=view&id=1WVgNCp2oKAeoiH7Fl7mt9cJHYYOYMcjn');
+INSERT INTO host (host_name)
+-- VALUES ('Young','https://drive.google.com/uc?export=view&id=1WVgNCp2oKAeoiH7Fl7mt9cJHYYOYMcjn');
+VALUES ('Young');
+
+INSERT INTO events (Event_Name,Event_date,host_id,picture_link)
+VALUES('UCI ICS Conference','2023-11-15',1,'https://drive.google.com/uc?export=view&id=1WVgNCp2oKAeoiH7Fl7mt9cJHYYOYMcjn');
 
 
--- -- 插入一个物理礼物示例数据
--- INSERT INTO gifts (sponsor_id, gift_name, description, logo, gift_type)
--- VALUES (1, 'Wireless Charger', 'FREE Google PowerCore 10K Portable Charger', 'https://drive.google.com/uc?export=view&id=1hMuSnBi07pSsJgmn0wj_ISoHCCgxzUT3', 'physical');
+INSERT INTO swag_bag (id, event_id,gift_id)
+VALUES(2,1,1),(2,1,2),
+      (1,1,1),(1,1,2),(1,1,3),(1,1,4),(1,1,5),(1,1,6);
 
 
--- -- 获取刚插入的gift ID
--- SET @last_gift_id = LAST_INSERT_ID();
 
 
--- -- 插入物理礼物的特定信息
--- INSERT INTO physical_gifts (gift_id, shipping_details, weight)
--- VALUES (@last_gift_id, 'Ships in 3-5 business days.', 0.5);
 
-
--- -- 插入一个数字礼物示例数据
--- INSERT INTO gifts (sponsor_id, gift_name, description, logo, gift_type)
--- VALUES (2, 'Amazon Prime for Students', '3 months of Amazon Prime for Students', 'https://drive.google.com/uc?export=view&id=1H3O9ZRS3jn5ysGC-8hhSKUI_blSK0xb6', 'digital');
-
-
--- -- 获取刚插入的gift ID
--- SET @last_gift_id = LAST_INSERT_ID();
-
-
--- -- 插入数字礼物的特定信息
--- INSERT INTO digital_gifts (gift_id, download_link, expiration_date)
--- VALUES (@last_gift_id, 'https://www.amazon.com/prime', '2024-01-01');
-
-
--- 插入 attendee 示例数据
+-- 插入 attendee 示例数据 
 -- INSERT INTO attendee (first_name, last_name, phone_number, email_address)
 -- VALUES ('John', 'Doe', '123-456-7890', 'john.doe@example.com'),
-   --    ('Jane', 'Smith', '987-654-3210', 'jane.smith@example.com'),
-   --    ('Alice', 'Johnson', '555-777-8888', 'alice.johnson@example.com');
+--       ('Jane', 'Smith', '987-654-3210', 'jane.smith@example.com'),
+--       ('Alice', 'Johnson', '555-777-8888', 'alice.johnson@example.com');
 
 
 -- 插入 shipping_information 示例数据
@@ -139,3 +148,5 @@ VALUES ('UCI ICS Conference','https://drive.google.com/uc?export=view&id=1WVgNCp
 -- SELECT gifts.logo, gifts.id, gifts.gift_name, gifts.description, sponsors.name as sponsor_name, sponsors.logo as sponsor_logo
 -- FROM gifts
 -- JOIN sponsors ON gifts.sponsor_id = sponsors.id where gifts.gift_type = 'physical'
+
+-- select * from shipping_information,swag_bag,gifts,sponsors,attendee,events,host;
