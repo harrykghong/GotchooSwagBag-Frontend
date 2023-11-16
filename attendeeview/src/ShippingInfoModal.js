@@ -13,7 +13,7 @@ import { useAuth } from './authContext';
 function ShippingInfoModal() {
   const { user, signIn, signOut } = useAuth();
   const [open, setOpen] = useState(false);
-  const [shippingInfo, setShippingInfo] = useState({ first_name: '', last_name:'', phone:'', email:'', 
+  const [shippingInfo, setShippingInfo] = useState({ first_name: '', last_name:'', 
     address1: '', address2:'', city:'', state:'', zip:'', country:'' });
 
   const handleOpen = () => {
@@ -30,9 +30,27 @@ function ShippingInfoModal() {
   };
 
   const handleSubmit = () => {
-    // Handle the shipping information, e.g., send it to a server
-    console.log('Shipping info:', shippingInfo);
-    setOpen(false);
+    fetch('http://localhost:5001/shipping-info', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(shippingInfo)
+      
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Network response was not ok.');
+    })
+    .then(data => {
+      console.log('Success:', data);
+      setOpen(false);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   };
   // if (user) {
     return (
