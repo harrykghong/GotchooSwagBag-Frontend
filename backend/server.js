@@ -36,9 +36,27 @@ app.get('/sponsors', (req, res) => {
 // Fetch physical gifts
 app.get('/physicalgifts', (req, res) => {
  const query = `
-   SELECT gifts.logo, gifts.id, gifts.gift_name, gifts.description, sponsors.name as sponsor_name, sponsors.logo as sponsor_logo
-   FROM gifts
-   JOIN sponsors ON gifts.sponsor_id = sponsors.id where gifts.gift_type = 'physical'
+  SELECT 
+    gifts.id, 
+    gifts.gift_name, 
+    gifts.description, 
+    gifts.logo, 
+    gifts.redeem_link,
+    gifts.gift_type,
+    sponsors.name AS sponsor_name,
+    sponsors.logo AS sponsor_logo
+  FROM 
+    gifts
+  INNER JOIN 
+    swag_bag ON gifts.id = swag_bag.gift_id
+  INNER JOIN 
+    events ON swag_bag.event_id = events.id
+  LEFT JOIN 
+    sponsors ON gifts.sponsor_id = sponsors.id
+  WHERE 
+    gifts.gift_type = 'physical' AND 
+    events.id = 1 AND 
+    swag_bag.id = 1;
  `;
  db.query(query, (err, results) => {
    if (err) throw err;
@@ -50,9 +68,27 @@ app.get('/physicalgifts', (req, res) => {
 // Fetch digitalgifts
 app.get('/digitalgifts', (req, res) => {
  const query = `
-   SELECT gifts.logo, gifts.id, gifts.gift_name, gifts.description, gifts.redeem_link, sponsors.name as sponsor_name, sponsors.logo as sponsor_logo
-   FROM gifts
-   JOIN sponsors ON gifts.sponsor_id = sponsors.id where gifts.gift_type = 'digital'
+  SELECT 
+    gifts.id, 
+    gifts.gift_name, 
+    gifts.description, 
+    gifts.logo, 
+    gifts.redeem_link,
+    gifts.gift_type,
+    sponsors.name AS sponsor_name,
+    sponsors.logo AS sponsor_logo
+  FROM 
+    gifts
+  INNER JOIN 
+    swag_bag ON gifts.id = swag_bag.gift_id
+  INNER JOIN 
+    events ON swag_bag.event_id = events.id
+  LEFT JOIN 
+    sponsors ON gifts.sponsor_id = sponsors.id
+  WHERE 
+    gifts.gift_type = 'digital' AND 
+    events.id = 1 AND 
+    swag_bag.id = 1;
  `;
  db.query(query, (err, results) => {
    if (err) throw err;
@@ -64,8 +100,8 @@ app.get('/digitalgifts', (req, res) => {
 // Fetch conference
 app.get('/host', (req, res) => {
  const query = `
- SELECT host.conference_name, host.picture_link
- From host  `;
+ SELECT events.Event_Name, events.picture_link
+ From events  `;
  db.query(query, (err, results) => {
    if (err) throw err;
    res.json(results);
