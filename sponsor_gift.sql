@@ -108,16 +108,57 @@ CREATE TABLE attendee (
 
 -- 创建 shipping_information 表
 CREATE TABLE shipping_information (
-    shipping_id INT AUTO_INCREMENT PRIMARY KEY,
-    attendee_id INT,
-    address_line_1 VARCHAR(255) NOT NULL,
-    address_line_2 VARCHAR(255), -- 通常是公寓、套房等
-    city VARCHAR(255) NOT NULL,
-    state VARCHAR(255) NOT NULL,
-    zip VARCHAR(10) NOT NULL,
-    country VARCHAR(255) DEFAULT 'US',
-    FOREIGN KEY (attendee_id) REFERENCES attendee(attendee_id)
+   attendee_id INT not null,
+   first_name VARCHAR(255) NOT NULL,
+   last_name VARCHAR(255) NOT NULL,
+   address1 VARCHAR(255) NOT NULL,
+   address2 VARCHAR(255),
+   city VARCHAR(255) NOT NULL,
+   which_state VARCHAR(255) NOT NULL,
+   zip VARCHAR(5) NOT NULL,
+   country VARCHAR(255) DEFAULT 'US',
+   gift_id int not null,
+   FOREIGN KEY (attendee_id) REFERENCES attendee(attendee_id),
+   FOREIGN KEY (gift_id) REFERENCES gifts(id),
+   PRIMARY key (attendee_id,gift_id)
 );
+
+
+-- -- 插入几个示例数据
+INSERT INTO sponsors (name, logo, website_link)
+VALUES ('Google', 'https://drive.google.com/uc?export=view&id=1dI1gqRqHotIqHopn8tSCC13iYDurvM-C','google.com'),
+      ('Amazon', 'https://drive.google.com/uc?export=view&id=10QuuPkUU3-yTN7L6PI7bMX9znNtKaRY4','amazon.com'),
+      ('Apple', 'https://drive.google.com/uc?export=view&id=16F9D--V8w1dHZLwEUGRJYpeaFq-EpH10','apple.com'),
+      ('Meta', 'https://drive.google.com/uc?export=view&id=1WBRA3Nr-3oL9pABb6CTTljNWn2oD1GZK','meta.com'),
+      ('Netflix', 'https://drive.google.com/uc?export=view&id=1WGs5hUOICkDZgfLAiPxe4ceRrIGCTGJL','netflix.com');
+    
+
+-- -- 插入几个示例数据
+INSERT INTO gifts (sponsor_id, gift_name, description, logo, gift_type)
+VALUES (1, 'Wireless Charger', 'FREE Google PowerCore 10K Portable Charger', 'https://drive.google.com/uc?export=view&id=1hMuSnBi07pSsJgmn0wj_ISoHCCgxzUT3', 'physical'),
+      (2, 'Meta Quest 3', 'Free Quest 3', 'https://drive.google.com/uc?export=view&id=12M8XD8DfzoA5z7XyRdW5-Ad9zollXgm5','physical'),
+      (4, 'JanSport Backpack', '50% OFF your JanSport Backpack Provided by Meta', 'https://drive.google.com/uc?export=view&id=1OaLdFc95hzt4T_e1u8LuQJUZ1aNAiUIB','physical');
+
+-- physical gifts
+INSERT INTO gifts (sponsor_id, gift_name, description, logo, redeem_link, gift_type)
+VALUES (2, 'Amazon Prime', '3 months of Amazon Prime for Students', 'https://drive.google.com/uc?export=view&id=1H3O9ZRS3jn5ysGC-8hhSKUI_blSK0xb6', 'https://www.amazon.com/amazonprime?tag=googhydr-20&hvadid=550213431242&hvpos=&hvexid=&hvnetw=g&hvrand=14802087175486172389&hvpone=&hvptwo=&hvqmt=e&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9031531&hvtargid=kwd-3151046130&ref=pd_sl_34qfrygf2i_e', 'digital'),
+		(5, 'Netflix Membership', '1 month free membership on Netflix', 'https://drive.google.com/uc?export=view&id=1iSAgGxC-OxVU7ZGAMbSvgf_2RpzsbxER', 'https://www.netflix.com/signup', 'digital'),
+		(3, 'Apple Music Membership', '12 month free membership on Apple music', 'https://drive.google.com/uc?export=view&id=1MBfRLR0DQrI0HhIfCAD_Iu3Lf1dwkhXt', 'https://www.apple.com/apple-music/', 'digital');
+
+INSERT INTO host (host_name)
+-- VALUES ('Young','https://drive.google.com/uc?export=view&id=1WVgNCp2oKAeoiH7Fl7mt9cJHYYOYMcjn');
+VALUES ('Young');
+
+INSERT INTO events (Event_Name,Event_date,host_id,picture_link)
+VALUES('UCI ICS Conference','2023-11-15',1,'https://drive.google.com/uc?export=view&id=1WVgNCp2oKAeoiH7Fl7mt9cJHYYOYMcjn');
+
+
+INSERT INTO swag_bag (id, event_id,gift_id)
+VALUES(2,1,1),(2,1,2),
+      (1,1,1),(1,1,2),(1,1,3),(1,1,4),(1,1,5),(1,1,6);
+
+
+
 
 
 -- 插入 attendee 示例数据
