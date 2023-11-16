@@ -1,4 +1,4 @@
--- 创建 sponsors 表
+-- 创建 sponsors 表 1
 -- create database Sponsor_info; 
 USE Sponsor_info;
 drop table if exists gifts;
