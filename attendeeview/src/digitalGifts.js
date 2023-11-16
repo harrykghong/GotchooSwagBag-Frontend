@@ -61,7 +61,7 @@ const DigitalGifts = ({ gifts }) => {
                         <DialogTitle>Confirmation</DialogTitle>
                         <DialogContent>
                           <p>Are you sure you want to proceed with the redirection?</p>
-                          <Button onClick={() => handleRedirect('https://www.amazon.com')} variant="contained" color="primary">
+                          <Button onClick={() => handleRedirect(gift.redeem_link)} variant="contained" color="primary">
                             Yes, Redirect
                           </Button>
                           <Button onClick={handleCloseModal} variant="outlined" color="secondary">

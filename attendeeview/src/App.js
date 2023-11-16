@@ -66,7 +66,7 @@ const App = () => {
         <Sponsors sponsors={sponsors} />
         <AuthProvider>
           <PhysicalGifts gifts={physicalG} />
-          <DigitalGifts gifts={physicalG}/>
+          <DigitalGifts gifts={digitalG}/>
         </AuthProvider>
         
         {/*<ShippingInfo />*/}
