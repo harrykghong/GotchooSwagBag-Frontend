@@ -111,9 +111,9 @@ app.get('/host', (req, res) => {
 
 // insert shipping info to database
 app.post('/shipping-info', (req, res) => {
- const { first_name, last_name, address1, address2, city, state, zip, country } = req.body;
- const query = 'INSERT INTO shipping_information (first_name, last_name, address1, address2, city, which_state, zip, country) VALUES (?,?,?,?,?,?,?,?)';
-  db.query(query, [first_name, last_name, address1, address2, city, state, zip, country], (err, results) => {
+ const { first_name, last_name, address1, address2, city, state, zip, country, gift_id } = req.body;
+ const query = 'INSERT INTO shipping_information (first_name, last_name, address1, address2, city, which_state, zip, country, gift_id) VALUES (?,?,?,?,?,?,?,?,?)';
+  db.query(query, [first_name, last_name, address1, address2, city, state, zip, country, gift_id], (err, results) => {
    if (err) {
      console.error(err);
      return res.status(500).json({ message: 'Internal Server Error', error: err });

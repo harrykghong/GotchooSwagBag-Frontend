@@ -17,20 +17,20 @@ import { useAuth } from './authContext';
 
 const steps = ['Sign in', 'Sign up', 'Shipping Information'];
 
-function getStepContent(step) {
+function getStepContent(step, selectedGift) {
     switch (step) {
         case 0:
             return <SignInModal/>;
         case 1:
             return <SignUpModal/>;
         case 2:
-            return <ShippingInfoModal/>;
+            return <ShippingInfoModal selectedGift={selectedGift}/>;
         default:
             throw new Error('Unknown Step');
     }
 }
 
-export default function Redeem({ buttonName }) {
+export default function Redeem({ buttonName, selectedGift }) {
     const [open, setOpen] = React.useState(false);
     const [activeStep, setActiveStep] = React.useState(0);
     const {user, signIn, signOut } = useAuth();
@@ -52,7 +52,7 @@ export default function Redeem({ buttonName }) {
 
     const handleSubmit = () => {
         // Handle the shipping information, e.g., send it to a server
-        console.log('Redeem info:', activeStep);
+        console.log('Redeem info:', activeStep, selectedGift);
         setOpen(false);
     };
 
@@ -87,7 +87,7 @@ export default function Redeem({ buttonName }) {
                         ) : (
                             <React.Fragment>
                             <Grid item xs={12}>
-                                {getStepContent(activeStep)}
+                                {getStepContent(activeStep,selectedGift)}
                             </Grid>
                             <Grid item xs={12}>
                                 <Box
