@@ -40,7 +40,7 @@ function MainConferenceBanner({ conference }) {
             }}
           >
             <Typography component="h1" variant="h3" color="inherit" gutterBottom sx={{ fontSize: '5rem', fontWeight: 'bold' }}>
-              {conference.conference_name}
+              {conference.Event_Name}
             </Typography>
             <Typography variant="h5" color="inherit" paragraph>
               {conference.description}
