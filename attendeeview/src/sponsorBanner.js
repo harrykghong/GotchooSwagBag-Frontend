@@ -1,24 +1,25 @@
+import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 // import Paper from '@mui/material/Paper';
 import { Paper, Button, Dialog, DialogContent, DialogTitle } from '@mui/material';
 
-// const ClickableSponsor = ({ imageUrl, altname, redirectUrl }) => {
-//   const [openModal, setOpenModal] = useState(false);
+// const ClickableSponsor = ({ index, imageUrl, altname, redirectUrl }) => {
+//   const [openModalIndex, setOpenModalIndex] = useState(null);
 
-//   const handleOpenModal = () => {
-//     setOpenModal(true);
+//   const handleOpenModal = (index) => {
+//     setOpenModalIndex(index);
 //   };
 
 //   const handleCloseModal = () => {
-//     setOpenModal(false);
+//     setOpenModalIndex(null);
 //   };
 
-//   const handleRedirect = () => {
-//     // Handle redirection logic here
-//     console.log('Redirecting...');
-//     setOpenModal(false); // Close the modal after redirection
+//   const handleRedirect = (url) => {
+//     console.log('Redirecting to:', url);
+//     window.open(url, '_blank');
+//     handleCloseModal(); // Close the modal after redirection
 //   };
 
 //   return (
@@ -28,11 +29,11 @@ import { Paper, Button, Dialog, DialogContent, DialogTitle } from '@mui/material
 //       </Paper>
 
 //       {/* Popup Modal */}
-//       <Dialog open={openModal} onClose={handleCloseModal}>
+//       <Dialog open={openModalIndex === index} onClose={handleCloseModal}>
 //         <DialogTitle>Confirmation</DialogTitle>
 //         <DialogContent>
 //           <p>Are you sure you want to proceed with the redirection?</p>
-//           <Button onClick={handleRedirect} variant="contained" color="primary">
+//           <Button onClick={() => handleRedirect(redirectUrl)} variant="contained" color="primary">
 //             Yes, Redirect
 //           </Button>
 //           <Button onClick={handleCloseModal} variant="outlined" color="secondary">
@@ -49,7 +50,7 @@ const Sponsors = ({ sponsors }) => (
     <Typography component="h2" variant='h2' color="#0A2647" sx= {{fontWeight: 'bold'}}>Our Sponsors</Typography>
     <Container sx={{ py: 4 }} maxWidth="xl">
       <Grid container spacing={4} className="sponsor-logos">
-        {sponsors.map((sponsor) => (
+        {sponsors.map((sponsor, index) => (
           <Grid item key={sponsor.id} className="sponsor-logo-container" >
             <img
               src={sponsor.logo}
@@ -60,7 +61,7 @@ const Sponsors = ({ sponsors }) => (
                 height: '90px', // Maintain aspect ratio
               }}
             />
-            {/* <ClickableImage imageUrl={sponsor.logo} alt={`${sponsor.name} logo`} to={sponsor.website_link} /> */}
+            {/* <ClickableSponsor index = {index} imageUrl={sponsor.logo} alt={`${sponsor.name} logo`} to={sponsor.website_link} /> */}
           </Grid>
         ))}
       </Grid>
