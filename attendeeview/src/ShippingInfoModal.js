@@ -18,11 +18,18 @@ const allStates = [
   'West Virginia', 'Wisconsin', 'Wyoming',
 ];
 
+const allCountries = [
+  'United States', 'Canada', 'United Kingdom', 'Germany', 'France', 'Italy', 'Spain', 'Australia', 'Japan', 'China',
+  'India', 'Brazil', 'Russia', 'South Africa', 'Mexico', 'Argentina', 'New Zealand', 'Netherlands', 'Sweden', 'Norway',
+  // Add more countries as needed
+];
+
+
 function ShippingInfoModal({selectedGift}) {
   const { user, signIn, signOut } = useAuth();
   const [open, setOpen] = useState(false);
   const [shippingInfo, setShippingInfo] = useState({ first_name: '', last_name:'', 
-    address1: '', address2:'', city:'', state:'', zip:'', country:'' , gift_id: selectedGift});
+    address1: '', address2:'', city:'', state:'', zip:'', country:'United States' , gift_id: selectedGift});
 
   const handleOpen = () => {
     setOpen(true);
@@ -133,6 +140,7 @@ function ShippingInfoModal({selectedGift}) {
               renderInput={(params) => (
                 <TextField
                   {...params}
+                  required
                   id="state"
                   name="state"
                   label="State/Province/Region"
@@ -157,7 +165,7 @@ function ShippingInfoModal({selectedGift}) {
                 value={shippingInfo.zip}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <TextField
                 required
                 id="country"
@@ -168,6 +176,24 @@ function ShippingInfoModal({selectedGift}) {
                 variant="standard"
                 onChange={handleInputChange}
                 value={shippingInfo.country}
+            />
+          </Grid> */}
+          <Grid item xs={12} sm={6}>
+            <Autocomplete
+              options={allCountries}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  required
+                  id="country"
+                  name="country"
+                  label="Country"
+                  fullWidth
+                  variant="standard"
+                />
+              )}
+              onChange={handleInputChange}
+              value={shippingInfo.country}
             />
           </Grid>
           <Button onClick={handleSubmit} color="primary">
