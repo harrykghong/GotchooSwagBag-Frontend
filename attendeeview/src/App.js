@@ -8,10 +8,12 @@ import MainConferenceBanner from './ConferenceBanner'
 import Sponsors from './sponsorBanner';
 import PhysicalGifts from './physicalGifts';
 import DigitalGifts from './digitalGifts';
+import { AuthProvider } from './authContext';
 
 
 
 const defaultTheme = createTheme();
+
 
 const App = () => {
   const [conference, setConferences] = useState([]);
@@ -62,8 +64,11 @@ const App = () => {
         <MainConferenceBanner conference={conference}/>
         {/* <Header conference={conference}/> */}
         <Sponsors sponsors={sponsors} />
-        <PhysicalGifts gifts={physicalG} />
-        <DigitalGifts gifts={digitalG}/>
+        <AuthProvider>
+          <PhysicalGifts gifts={physicalG} />
+          <DigitalGifts gifts={digitalG}/>
+        </AuthProvider>
+        
         {/*<ShippingInfo />*/}
         
       </Container>

@@ -88,11 +88,11 @@ CREATE TABLE shipping_information (
 
 -- -- 插入几个示例数据
 INSERT INTO sponsors (name, logo, website_link)
-VALUES ('Google', 'https://drive.google.com/uc?export=view&id=1dI1gqRqHotIqHopn8tSCC13iYDurvM-C','google.com'),
-      ('Amazon', 'https://drive.google.com/uc?export=view&id=10QuuPkUU3-yTN7L6PI7bMX9znNtKaRY4','amazon.com'),
-      ('Apple', 'https://drive.google.com/uc?export=view&id=16F9D--V8w1dHZLwEUGRJYpeaFq-EpH10','apple.com'),
-      ('Meta', 'https://drive.google.com/uc?export=view&id=1WBRA3Nr-3oL9pABb6CTTljNWn2oD1GZK','meta.com'),
-      ('Netflix', 'https://drive.google.com/uc?export=view&id=1WGs5hUOICkDZgfLAiPxe4ceRrIGCTGJL','netflix.com');
+VALUES ('Google', 'https://drive.google.com/uc?export=view&id=1dI1gqRqHotIqHopn8tSCC13iYDurvM-C','https://www.google.com/'),
+      ('Amazon', 'https://drive.google.com/uc?export=view&id=10QuuPkUU3-yTN7L6PI7bMX9znNtKaRY4','https://www.amazon.com'),
+      ('Apple', 'https://drive.google.com/uc?export=view&id=16F9D--V8w1dHZLwEUGRJYpeaFq-EpH10','https://www.apple.com'),
+      ('Meta', 'https://drive.google.com/uc?export=view&id=1WBRA3Nr-3oL9pABb6CTTljNWn2oD1GZK','https://www.meta.com'),
+      ('Netflix', 'https://drive.google.com/uc?export=view&id=1WGs5hUOICkDZgfLAiPxe4ceRrIGCTGJL','https://www.netflix.com');
     
 
 -- -- 插入几个示例数据
