@@ -98,14 +98,21 @@ VALUES ('Google', 'https://drive.google.com/uc?export=view&id=1dI1gqRqHotIqHopn8
 -- -- 插入几个示例数据
 INSERT INTO gifts (sponsor_id, gift_name, description, logo, gift_type)
 VALUES (1, 'Wireless Charger', 'FREE Google PowerCore 10K Portable Charger', 'https://drive.google.com/uc?export=view&id=1hMuSnBi07pSsJgmn0wj_ISoHCCgxzUT3', 'physical'),
-      (2, 'Meta Quest 3', 'Free Quest 3', 'https://drive.google.com/uc?export=view&id=12M8XD8DfzoA5z7XyRdW5-Ad9zollXgm5','physical'),
-      (4, 'JanSport Backpack', '50% OFF your JanSport Backpack Provided by Meta', 'https://drive.google.com/uc?export=view&id=1OaLdFc95hzt4T_e1u8LuQJUZ1aNAiUIB','physical');
+      (4, 'Meta Quest 3', 'Free Quest 3', 'https://drive.google.com/uc?export=view&id=12M8XD8DfzoA5z7XyRdW5-Ad9zollXgm5','physical'),
+      (5, 'JanSport Backpack', '50% OFF your JanSport Backpack provided by Meta', 'https://drive.google.com/uc?export=view&id=1OaLdFc95hzt4T_e1u8LuQJUZ1aNAiUIB','physical'),
+      (3, 'Apple Airpods Pro', 'Free Apple Airpods Pro provided by Apple', 'https://drive.google.com/uc?export=view&id=1PYWixag1-ltOOR3AzndgW2zyPDcxZNPv','physical'),
+      (2, 'DJI Osmo Action Cam 3', 'Free DJI Camera provided by Amazon', 'https://drive.google.com/uc?export=view&id=1qef_eA8Q95DWzyzJ2bOIQAaKoSmzIa6H','physical'),
+      (4, 'Nintendo Switch', 'Free Nintendo Switch provided by Netflix', 'https://drive.google.com/uc?export=view&id=1t-YLgE3i8LfeV8nuDUXcx0vBF__bmfTt','physical');
+
 
 -- physical gifts
 INSERT INTO gifts (sponsor_id, gift_name, description, logo, redeem_link, gift_type)
 VALUES (2, 'Amazon Prime', '3 months of Amazon Prime for Students', 'https://drive.google.com/uc?export=view&id=1H3O9ZRS3jn5ysGC-8hhSKUI_blSK0xb6', 'https://www.amazon.com/amazonprime?tag=googhydr-20&hvadid=550213431242&hvpos=&hvexid=&hvnetw=g&hvrand=14802087175486172389&hvpone=&hvptwo=&hvqmt=e&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9031531&hvtargid=kwd-3151046130&ref=pd_sl_34qfrygf2i_e', 'digital'),
 		(5, 'Netflix Membership', '1 month free membership on Netflix', 'https://drive.google.com/uc?export=view&id=1iSAgGxC-OxVU7ZGAMbSvgf_2RpzsbxER', 'https://www.netflix.com/signup', 'digital'),
-		(3, 'Apple Music Membership', '12 month free membership on Apple music', 'https://drive.google.com/uc?export=view&id=1MBfRLR0DQrI0HhIfCAD_Iu3Lf1dwkhXt', 'https://www.apple.com/apple-music/', 'digital');
+		(3, 'Apple Music Membership', '12 month free membership on Apple music', 'https://drive.google.com/uc?export=view&id=1MBfRLR0DQrI0HhIfCAD_Iu3Lf1dwkhXt', 'https://www.apple.com/apple-music/', 'digital'),
+		(4, 'Meta 50$ Gift Card', '50$ gift card from Meta', 'https://drive.google.com/uc?export=view&id=1Y7bPUXpIwotmISZPInF4i4o4n3i3YQqj', 'https://www.meta.com/quest/gift-cards/', 'digital'),
+		(2, 'Amazon 50$ Gift Card', '50$ gift card from Amazon', 'https://drive.google.com/uc?export=view&id=1zbMxKBidBfeXQeNZ0ScuIu4yBKcyZSGp', 'https://www.amazon.com/b/?node=2238192011&tag=googhydr-20&hvadid=550213431119&hvpos=&hvexid=&hvnetw=g&hvrand=15467463041833024329&hvpone=&hvptwo=&hvqmt=e&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9031533&hvtargid=kwd-324877300951&ref=pd_sl_5jo1sotma_e', 'digital'),
+		(1, 'Google Play 20$ Gift Card', '20$ gift card from Google', 'https://drive.google.com/uc?export=view&id=1wd65mMbi86VLaiKysxlsoITmsY8QxFy7', 'https://play.google.com/store/games?device=windows&code', 'digital');
 
 INSERT INTO host (host_name)
 -- VALUES ('Young','https://drive.google.com/uc?export=view&id=1WVgNCp2oKAeoiH7Fl7mt9cJHYYOYMcjn');
@@ -117,7 +124,7 @@ VALUES('UCI ICS Conference','2023-11-15',1,'https://drive.google.com/uc?export=v
 
 INSERT INTO swag_bag (id, event_id,gift_id)
 VALUES(2,1,1),(2,1,2),
-      (1,1,1),(1,1,2),(1,1,3),(1,1,4),(1,1,5),(1,1,6);
+      (1,1,1),(1,1,2),(1,1,3),(1,1,4),(1,1,5),(1,1,6),(1,1,7),(1,1,8),(1,1,9),(1,1,10),(1,1,11),(1,1,12);
 
 
 
@@ -150,3 +157,26 @@ VALUES(2,1,1),(2,1,2),
 -- JOIN sponsors ON gifts.sponsor_id = sponsors.id where gifts.gift_type = 'physical'
 
 -- select * from shipping_information,swag_bag,gifts,sponsors,attendee,events,host;
+
+-- select * from gifts;
+SELECT 
+    gifts.id, 
+    gifts.gift_name, 
+    gifts.description, 
+    gifts.logo, 
+    gifts.redeem_link,
+    gifts.gift_type,
+    sponsors.name AS sponsor_name,
+    sponsors.logo AS sponsor_logo
+  FROM 
+    gifts
+  INNER JOIN 
+    swag_bag ON gifts.id = swag_bag.gift_id
+  INNER JOIN 
+    events ON swag_bag.event_id = events.id
+  LEFT JOIN 
+    sponsors ON gifts.sponsor_id = sponsors.id
+  WHERE 
+    gifts.gift_type = 'digital' AND 
+    events.id = 1 AND 
+    swag_bag.id = 1;
