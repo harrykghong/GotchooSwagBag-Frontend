@@ -35,52 +35,126 @@ app.get('/item', function(req, res) {
   res.json({success: 'get call succeed!', url: req.url});
 });
 
-app.get('/item/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'get call succeed!', url: req.url});
-});
 
-/****************************
-* Example post method *
-****************************/
+// server.js
 
-app.post('/item', function(req, res) {
-  // Add your code here
-  res.json({success: 'post call succeed!', url: req.url, body: req.body})
-});
+// fetch sponsor
+app.get('/sponsors', (req, res) => {
+  console.log("fetch sponsor");
+  // const query = 'SELECT * FROM sponsors';
+  // db.query(query, (err, results) => {
+  //   if (err) throw err;
+  //   res.json(results);
+  // });
+  res.json("");
+ });
+ 
+ 
+ // Fetch physical gifts
+ app.get('/physicalgifts', (req, res) => {
+  const query = `
+   SELECT 
+     gifts.id, 
+     gifts.gift_name, 
+     gifts.description, 
+     gifts.logo, 
+     gifts.redeem_link,
+     gifts.gift_type,
+     sponsors.name AS sponsor_name,
+     sponsors.logo AS sponsor_logo
+   FROM 
+     gifts
+   INNER JOIN 
+     swag_bag ON gifts.id = swag_bag.gift_id
+   INNER JOIN 
+     events ON swag_bag.event_id = events.id
+   LEFT JOIN 
+     sponsors ON gifts.sponsor_id = sponsors.id
+   WHERE 
+     gifts.gift_type = 'physical' AND 
+     events.id = 1 AND 
+     swag_bag.id = 1;
+  `;
+  // db.query(query, (err, results) => {
+  //   if (err) throw err;
+  //   res.json(results);
+  // });
+  console.log("phisical gift");
+  res.json("");
 
-app.post('/item/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'post call succeed!', url: req.url, body: req.body})
-});
+ });
+ 
+ 
+ // Fetch digitalgifts
+ app.get('/digitalgifts', (req, res) => {
+  const query = `
+   SELECT 
+     gifts.id, 
+     gifts.gift_name, 
+     gifts.description, 
+     gifts.logo, 
+     gifts.redeem_link,
+     gifts.gift_type,
+     sponsors.name AS sponsor_name,
+     sponsors.logo AS sponsor_logo
+   FROM 
+     gifts
+   INNER JOIN 
+     swag_bag ON gifts.id = swag_bag.gift_id
+   INNER JOIN 
+     events ON swag_bag.event_id = events.id
+   LEFT JOIN 
+     sponsors ON gifts.sponsor_id = sponsors.id
+   WHERE 
+     gifts.gift_type = 'digital' AND 
+     events.id = 1 AND 
+     swag_bag.id = 1;
+  `;
+  // db.query(query, (err, results) => {
+  //   if (err) throw err;
+  //   res.json(results);
+  // });
+  console.log("digital gift");
+  res.json("");
 
-/****************************
-* Example put method *
-****************************/
+ });
+ 
+ 
+ // Fetch conference
+ app.get('/host', (req, res) => {
+  const query = `
+  SELECT events.Event_Name, events.picture_link
+  From events  `;
+  // db.query(query, (err, results) => {
+  //   if (err) throw err;
+  //   res.json(results);
+  // });
+  console.log("host");
+  res.json("");
 
-app.put('/item', function(req, res) {
-  // Add your code here
-  res.json({success: 'put call succeed!', url: req.url, body: req.body})
-});
+ });
+ 
+ 
+ // insert shipping info to database
+ app.post('/shipping-info', (req, res) => {
+  const { first_name, last_name, address1, address2, city, state, zip, country } = req.body;
+  const query = 'INSERT INTO shipping_information (first_name, last_name, address1, address2, city, which_state, zip, country) VALUES (?,?,?,?,?,?,?,?)';
+  //  db.query(query, [first_name, last_name, address1, address2, city, state, zip, country], (err, results) => {
+  //   if (err) {
+  //     console.error(err);
+  //     return res.status(500).json({ message: 'Internal Server Error', error: err });
+  //   }
+   
+  //   if (results.affectedRows === 1) {
+  //     res.status(201).json({ message: 'Shipping information saved successfully' });
+  //   } else {
+  //     res.status(400).json({ message: 'Insert failed, no rows affected.' });
+  //   }
+  // });
+  console.log("shipping info");
+  res.json("");
 
-app.put('/item/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'put call succeed!', url: req.url, body: req.body})
-});
-
-/****************************
-* Example delete method *
-****************************/
-
-app.delete('/item', function(req, res) {
-  // Add your code here
-  res.json({success: 'delete call succeed!', url: req.url});
-});
-
-app.delete('/item/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'delete call succeed!', url: req.url});
-});
+ });
 
 app.listen(3000, function() {
     console.log("App started")
