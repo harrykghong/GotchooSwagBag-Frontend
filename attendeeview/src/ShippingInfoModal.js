@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-// import Dialog from '@mui/material/Dialog';
-// import DialogTitle from '@mui/material/DialogTitle';
-// import DialogContent from '@mui/material/DialogContent';
-// import DialogActions from '@mui/material/DialogActions';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Grid from '@mui/material/Grid';
@@ -42,10 +42,6 @@ function ShippingInfoModal({selectedGift}) {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setShippingInfo({ ...shippingInfo, [name]: value });
-  };
-
-  const handleStateChange = (event, value) => {
-    setShippingInfo({...shippingInfo, state: value });
   };
 
   const handleSubmit = () => {
@@ -139,25 +135,22 @@ function ShippingInfoModal({selectedGift}) {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-             <Autocomplete
-                options={allStates}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    required
-                    id="state"
-                    name="state"
-                    label="State/Province/Region"
-                    fullWidth
-                    variant="standard"
-                    onChange={handleInputChange}
-                    value={shippingInfo.state}
-                  />
-                )}
-                onChange={handleStateChange}
-                value={shippingInfo.state}
-              />
-
+            <Autocomplete
+              options={allStates}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  required
+                  id="state"
+                  name="state"
+                  label="State/Province/Region"
+                  fullWidth
+                  variant="standard"
+                />
+              )}
+              onChange={handleInputChange}
+              value={shippingInfo.state}
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
@@ -196,7 +189,6 @@ function ShippingInfoModal({selectedGift}) {
                   name="country"
                   label="Country"
                   fullWidth
-                  
                   variant="standard"
                 />
               )}
