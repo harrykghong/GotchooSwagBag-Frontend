@@ -23,7 +23,7 @@ const App = () => {
   
   useEffect(() => {
     const fetchSponsors = async () => {
-      const response = await fetch('http://gcdm2.crhcg4x4v37c.us-west-1.rds.amazonaws.com:3306/sponsors');
+      const response = await fetch('http://localhost:5001/sponsors');
       const data = await response.json();
       setSponsors(data);
     };
