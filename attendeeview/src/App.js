@@ -23,23 +23,23 @@ const App = () => {
   
   useEffect(() => {
     const fetchSponsors = async () => {
-      const response = await fetch('http://localhost:5001/sponsors');
+      const response = await fetch('http://gcdm2.crhcg4x4v37c.us-west-1.rds.amazonaws.com:3306/sponsors');
       const data = await response.json();
       setSponsors(data);
     };
     const fetchGifts = async () => {
-      const response = await fetch('http://localhost:5001/physicalgifts');
+      const response = await fetch('http://gcdm2.crhcg4x4v37c.us-west-1.rds.amazonaws.com:3306/physicalgifts');
       const data = await response.json();
       setGifts(data);
     };
 
     const fetchdigitalGifts = async () => {
-      const response = await fetch('http://localhost:5001/digitalgifts');
+      const response = await fetch('http://gcdm2.crhcg4x4v37c.us-west-1.rds.amazonaws.com:3306/digitalgifts');
       const data = await response.json();
       setdigitalGifts(data);
     };
     const fetchConferences = async () => {
-      const response = await fetch('http://localhost:5001/host');
+      const response = await fetch('http://gcdm2.crhcg4x4v37c.us-west-1.rds.amazonaws.com:3306/host');
       const data = await response.json();
       setConferences(data[0]);
     }; 

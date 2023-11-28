@@ -1,4 +1,15 @@
 export type AmplifyDependentResourcesAttributes = {
+  "auth": {
+    "gotchoob4260bb4": {
+      "AppClientID": "string",
+      "AppClientIDWeb": "string",
+      "IdentityPoolId": "string",
+      "IdentityPoolName": "string",
+      "UserPoolArn": "string",
+      "UserPoolId": "string",
+      "UserPoolName": "string"
+    }
+  },
   "function": {
     "digitalgiftbagApp": {
       "Arn": "string",

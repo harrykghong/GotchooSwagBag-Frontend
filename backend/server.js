@@ -10,9 +10,9 @@ app.use(express.json());
 
 
 const db = mysql.createConnection({
- host: 'localhost',
- user: 'mytestuser',
- password: 'My6$Password',
+ host: 'gcdm2.crhcg4x4v37c.us-west-1.rds.amazonaws.com',
+ user: 'admin',
+ password: 'WliH664osL9NdGPpNhFl',
  database: 'Sponsor_info'
 });
 
