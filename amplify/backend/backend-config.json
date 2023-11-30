@@ -5,23 +5,5 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
-  },
-  "parameters": {
-    "AMPLIFY_function_digitalgiftbagApp_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "digitalgiftbagApp"
-        }
-      ]
-    },
-    "AMPLIFY_function_digitalgiftbagApp_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "digitalgiftbagApp"
-        }
-      ]
-    }
   }
 }
