@@ -1,28 +1,4 @@
 {
-  "cognito": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-gotchoo-cognito-124901-authRole",
-      "UnauthRoleArn": "arn:aws:iam::499876556114:role/amplify-gotchoo-cognito-124901-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::499876556114:role/amplify-gotchoo-cognito-124901-authRole",
-      "Region": "us-west-1",
-      "DeploymentBucketName": "amplify-gotchoo-cognito-124901-deployment",
-      "UnauthRoleName": "amplify-gotchoo-cognito-124901-unauthRole",
-      "StackName": "amplify-gotchoo-cognito-124901",
-      "StackId": "arn:aws:cloudformation:us-west-1:499876556114:stack/amplify-gotchoo-cognito-124901/93ded840-8978-11ee-a978-02a4a6298359",
-      "AmplifyAppId": "d9vt6xhkzy4o7"
-    },
-    "categories": {
-      "function": {
-        "digitalgiftbagApp": {
-          "deploymentBucketName": "amplify-gotchoo-cognito-124901-deployment",
-          "s3Key": "amplify-builds/digitalgiftbagApp-536149315547372f7961-build.zip"
-        }
-      },
-      "auth": {
-        "gotchoob4260bb4": {}
-      }
-    }
-  },
   "staging": {
     "awscloudformation": {
       "AuthRoleName": "amplify-gotchoo-staging-31255-authRole",
@@ -34,17 +10,6 @@
       "StackName": "amplify-gotchoo-staging-31255",
       "StackId": "arn:aws:cloudformation:us-west-1:499876556114:stack/amplify-gotchoo-staging-31255/39fc8d00-721b-11ee-bd6a-06d20327064d",
       "AmplifyAppId": "d9vt6xhkzy4o7"
-<<<<<<< Updated upstream
-=======
-    },
-    "categories": {
-      "function": {
-        "digitalgiftbagApp": {
-          "deploymentBucketName": "amplify-gotchoo-staging-31255-deployment",
-          "s3Key": "amplify-builds/digitalgiftbagApp-3164647055524343496f-build.zip"
-        }
-      }
->>>>>>> Stashed changes
     }
   }
 }
