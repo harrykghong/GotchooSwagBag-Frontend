@@ -36,7 +36,7 @@
       "function": {
         "digitalgiftbagApp": {
           "deploymentBucketName": "amplify-gotchoo-cognito-124901-deployment",
-          "s3Key": "amplify-builds/digitalgiftbagApp-3164647055524343496f-build.zip"
+          "s3Key": "amplify-builds/digitalgiftbagApp-536149315547372f7961-build.zip"
         }
       },
       "auth": {

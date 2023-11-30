@@ -8,7 +8,7 @@ See the License for the specific language governing permissions and limitations 
 
 
 
-
+var mysql = require('mysql');
 const express = require('express')
 const bodyParser = require('body-parser')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
@@ -19,20 +19,34 @@ app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
 
 // Enable CORS for all methods
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Headers", "*")
   next()
 });
 
+const db = mysql.createConnection({
+  host: 'gcdm2.crhcg4x4v37c.us-west-1.rds.amazonaws.com',
+  user: 'admin',
+  password: 'WliH664osL9NdGPpNhFl',
+  database: 'Sponsor_info'
+});
 
+db.connect(function (err) {
+  if (err) {
+    console.error('Database connection failed: ' + err.stack);
+    return;
+  }
+
+  console.log('Connected to database.');
+});
 /**********************
  * Example get method *
  **********************/
 
-app.get('/item', function(req, res) {
+app.get('/item', function (req, res) {
   // Add your code here
-  res.json({success: 'get call succeed!', url: req.url});
+  res.json({ success: 'get call succeed!', url: req.url });
 });
 
 
@@ -41,17 +55,16 @@ app.get('/item', function(req, res) {
 // fetch sponsor
 app.get('/sponsors', (req, res) => {
   console.log("fetch sponsor");
-  // const query = 'SELECT * FROM sponsors';
-  // db.query(query, (err, results) => {
-  //   if (err) throw err;
-  //   res.json(results);
-  // });
-  res.json("");
- });
- 
- 
- // Fetch physical gifts
- app.get('/physicalgifts', (req, res) => {
+  const query = 'SELECT * FROM sponsors';
+  db.query(query, (err, results) => {
+    if (err) throw err;
+    res.json(results);
+  });
+});
+
+
+// Fetch physical gifts
+app.get('/physicalgifts', (req, res) => {
   const query = `
    SELECT 
      gifts.id, 
@@ -75,18 +88,16 @@ app.get('/sponsors', (req, res) => {
      events.id = 1 AND 
      swag_bag.id = 1;
   `;
-  // db.query(query, (err, results) => {
-  //   if (err) throw err;
-  //   res.json(results);
-  // });
-  console.log("phisical gift");
-  res.json("");
+  db.query(query, (err, results) => {
+    if (err) throw err;
+    res.json(results);
+  });
 
- });
- 
- 
- // Fetch digitalgifts
- app.get('/digitalgifts', (req, res) => {
+});
+
+
+// Fetch digitalgifts
+app.get('/digitalgifts', (req, res) => {
   const query = `
    SELECT 
      gifts.id, 
@@ -110,54 +121,47 @@ app.get('/sponsors', (req, res) => {
      events.id = 1 AND 
      swag_bag.id = 1;
   `;
-  // db.query(query, (err, results) => {
-  //   if (err) throw err;
-  //   res.json(results);
-  // });
-  console.log("digital gift");
-  res.json("");
+  db.query(query, (err, results) => {
+    if (err) throw err;
+    res.json(results);
+  });
 
- });
- 
- 
- // Fetch conference
- app.get('/host', (req, res) => {
+});
+
+
+// Fetch conference
+app.get('/host', (req, res) => {
   const query = `
   SELECT events.Event_Name, events.picture_link
   From events  `;
-  // db.query(query, (err, results) => {
-  //   if (err) throw err;
-  //   res.json(results);
-  // });
-  console.log("host");
-  res.json("");
+  db.query(query, (err, results) => {
+    if (err) throw err;
+    res.json(results);
+  });
 
- });
- 
- 
- // insert shipping info to database
- app.post('/shipping-info', (req, res) => {
+});
+
+
+// insert shipping info to database
+app.post('/shipping-info', (req, res) => {
   const { first_name, last_name, address1, address2, city, state, zip, country } = req.body;
   const query = 'INSERT INTO shipping_information (first_name, last_name, address1, address2, city, which_state, zip, country) VALUES (?,?,?,?,?,?,?,?)';
-  //  db.query(query, [first_name, last_name, address1, address2, city, state, zip, country], (err, results) => {
-  //   if (err) {
-  //     console.error(err);
-  //     return res.status(500).json({ message: 'Internal Server Error', error: err });
-  //   }
-   
-  //   if (results.affectedRows === 1) {
-  //     res.status(201).json({ message: 'Shipping information saved successfully' });
-  //   } else {
-  //     res.status(400).json({ message: 'Insert failed, no rows affected.' });
-  //   }
-  // });
-  console.log("shipping info");
-  res.json("");
+  db.query(query, [first_name, last_name, address1, address2, city, state, zip, country], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Internal Server Error', error: err });
+    }
 
- });
+    if (results.affectedRows === 1) {
+      res.status(201).json({ message: 'Shipping information saved successfully' });
+    } else {
+      res.status(400).json({ message: 'Insert failed, no rows affected.' });
+    }
+  });
+});
 
-app.listen(3000, function() {
-    console.log("App started")
+app.listen(3000, function () {
+  console.log("App started")
 });
 
 // Export the app object. When executing the application local this does nothing. However,
