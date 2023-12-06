@@ -13,7 +13,8 @@
     },
     "categories": {
       "auth": {
-        "gotchoob4260bb4": {}
+        "gotchoob4260bb4": {},
+        "userPoolGroups": {}
       },
       "function": {
         "digitalgiftbagApp": {
