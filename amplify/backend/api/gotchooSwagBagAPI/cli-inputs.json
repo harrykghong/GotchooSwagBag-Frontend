@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/swagbag": {
+      "name": "/swagbag",
+      "lambdaFunction": "digitalgiftbagApp",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

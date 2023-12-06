@@ -21,6 +21,9 @@
           "deploymentBucketName": "amplify-gotchoo-cognito-124901-deployment",
           "s3Key": "amplify-builds/digitalgiftbagApp-7852522b676668715534-build.zip"
         }
+      },
+      "api": {
+        "gotchooSwagBagAPI": {}
       }
     }
   }
