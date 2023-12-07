@@ -1,20 +1,12 @@
-/*
-Copyright 2017 - 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
-    http://aws.amazon.com/apache2.0/
-or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and limitations under the License.
-*/
-
-
-const awsServerlessExpress = require('aws-serverless-express');
-const express = require('express');
-const bodyParser = require('body-parser');
-const mysql = require('mysql');
+var mysql = require('mysql');
+const express = require('express')
+const bodyParser = require('body-parser')
+const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 
 // declare a new express app
 const app = express()
 app.use(bodyParser.json())
+app.use(awsServerlessExpressMiddleware.eventContext())
 
 // Enable CORS for all methods
 app.use(function (req, res, next) {
@@ -129,14 +121,11 @@ app.get('/digitalgifts', (req, res) => {
 
 // Fetch conference
 app.get('/host', (req, res) => {
-  console.log("made it to /host yay!")
-
   const query = `
   SELECT events.Event_Name, events.picture_link
   From events  `;
   db.query(query, (err, results) => {
     if (err) throw err;
-    console.log("returning results", results)
     res.json(results);
   });
 
@@ -161,10 +150,11 @@ app.post('/shipping-info', (req, res) => {
   });
 });
 
-// Create a server from your Express app
-const server = awsServerlessExpress.createServer(app);
+app.listen(3306, function () {
+  console.log("App started")
+});
 
-// Export your Lambda handler
-exports.handler = (event, context) => {
-  awsServerlessExpress.proxy(server, event, context);
-};
+// Export the app object. When executing the application local this does nothing. However,
+// to port it to AWS Lambda we will create a wrapper around that will load the app from
+// this file
+module.exports = app
