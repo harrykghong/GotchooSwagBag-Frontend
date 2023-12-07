@@ -7,7 +7,7 @@ const awsServerlessExpressMiddleware = require('aws-serverless-express/middlewar
 const app = express()
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
-
+const API_PATH = '/swagbag';
 // Enable CORS for all methods
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
@@ -34,7 +34,7 @@ db.connect(function (err) {
  * Example get method *
  **********************/
 
-app.get('/item', function (req, res) {
+app.get(API_PATH + '/item', function (req, res) {
   // Add your code here
   res.json({ success: 'get call succeed!', url: req.url });
 });
@@ -43,7 +43,7 @@ app.get('/item', function (req, res) {
 // server.js
 
 // fetch sponsor
-app.get('/sponsors', (req, res) => {
+app.get(API_PATH + '/sponsors', (req, res) => {
   console.log("fetch sponsor");
   const query = 'SELECT * FROM sponsors';
   db.query(query, (err, results) => {
@@ -54,7 +54,7 @@ app.get('/sponsors', (req, res) => {
 
 
 // Fetch physical gifts
-app.get('/physicalgifts', (req, res) => {
+app.get(API_PATH + '/physicalgifts', (req, res) => {
   const query = `
    SELECT 
      gifts.id, 
@@ -87,7 +87,7 @@ app.get('/physicalgifts', (req, res) => {
 
 
 // Fetch digitalgifts
-app.get('/digitalgifts', (req, res) => {
+app.get(API_PATH + '/digitalgifts', (req, res) => {
   const query = `
    SELECT 
      gifts.id, 
@@ -120,7 +120,7 @@ app.get('/digitalgifts', (req, res) => {
 
 
 // Fetch conference
-app.get('/host', (req, res) => {
+app.get(API_PATH + '/host', (req, res) => {
   const query = `
   SELECT events.Event_Name, events.picture_link
   From events  `;
@@ -133,7 +133,7 @@ app.get('/host', (req, res) => {
 
 
 // insert shipping info to database
-app.post('/shipping-info', (req, res) => {
+app.post(API_PATH + '/shipping-info', (req, res) => {
   const { first_name, last_name, address1, address2, city, state, zip, country } = req.body;
   const query = 'INSERT INTO shipping_information (first_name, last_name, address1, address2, city, which_state, zip, country) VALUES (?,?,?,?,?,?,?,?)';
   db.query(query, [first_name, last_name, address1, address2, city, state, zip, country], (err, results) => {
