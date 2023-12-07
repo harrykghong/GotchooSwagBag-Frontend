@@ -129,11 +129,14 @@ app.get('/digitalgifts', (req, res) => {
 
 // Fetch conference
 app.get('/host', (req, res) => {
+  console.log("made it to /host yay!")
+
   const query = `
   SELECT events.Event_Name, events.picture_link
   From events  `;
   db.query(query, (err, results) => {
     if (err) throw err;
+    console.log("returning results", results)
     res.json(results);
   });
 
